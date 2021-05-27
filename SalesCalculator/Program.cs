@@ -15,8 +15,7 @@ namespace SalesCalculator {
             Dictionary<string, int> amounPerStore = sales.GetPerStoreSales();
             foreach (KeyValuePair<string,int> obj in amounPerStore) {
                 Console.WriteLine("{0} {1}", obj.Key, obj.Value);
-            }
-
+            } 
         }
         //データを読み取りリストを返す
         static List<Sale> ReadSales(string filePath) {
