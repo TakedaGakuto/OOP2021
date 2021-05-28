@@ -10,27 +10,13 @@ namespace SalesCalculator {
         static void Main(string[] args) {
             //List<Sale> sales = ReadSales("Sales.csv");　//ドライバ(テスト用上位モジュール)↔スタブ
 
-            SalesCounter sales = new SalesCounter(ReadSales("sales.csv"));//SalesCounterにReadSalesの結果を渡す
+            var sales = new SalesCounter("sales.csv");//SalesCounterにReadSalesの結果を渡す
 
-            Dictionary<string, int> amounPerStore = sales.GetPerStoreSales();
+            IDictionary<string, int> amounPerStore = sales.GetPerStoreSales();
             foreach (KeyValuePair<string,int> obj in amounPerStore) {
                 Console.WriteLine("{0} {1}", obj.Key, obj.Value);
             } 
         }
-        //データを読み取りリストを返す
-        static List<Sale> ReadSales(string filePath) {
-            List<Sale> sales = new List<Sale>();
-            string[] lines = File.ReadAllLines(filePath);
-            foreach (string line in lines) {
-                string[] items = line.Split(',');　//「,」で3つに区切って、それぞれ配列に
-                Sale sale = new Sale {
-                    ShopName = items[0],
-                    ProductCategory = items[1],
-                    Amount = int.Parse(items[2])
-                };//オブジェクト初期化子...オブジェクト初期化子を使うことで、メンテナンス性が良
-                sales.Add(sale);
-            }
-            return sales;
-        }
+        
     }
 }
