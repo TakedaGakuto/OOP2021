@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SalesCalculator {
+namespace Exarcise3 {
     //売り上げ集計クラス
     class SalesCounter {
 
@@ -31,7 +31,7 @@ namespace SalesCalculator {
             return sales;
         }
         
-        //店舗別売り上げ集計メソッド
+        /*//店舗別売り上げ集計メソッド
         public IDictionary<string,int> GetPerStoreSales() {
             var dict = new Dictionary<string, int>();
             foreach(var sale in _sales) {
@@ -41,6 +41,19 @@ namespace SalesCalculator {
                 //新規の場合
                 else
                     dict[sale.ShopName] = sale.Amount;
+            }
+            return dict;
+        }*/
+        //店舗別売り上げ集計メソッド
+        public IDictionary<string, int> GetPerStoreSales() {
+            var dict = new Dictionary<string, int>();
+            foreach (var sale in _sales) {
+                //既存の場合
+                if (dict.ContainsKey(sale.ProductCategory))
+                    dict[sale.ProductCategory] += sale.Amount;
+                //新規の場合
+                else
+                    dict[sale.ProductCategory] = sale.Amount;
             }
             return dict;
         }
