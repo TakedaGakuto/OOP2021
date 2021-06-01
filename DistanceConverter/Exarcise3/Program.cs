@@ -15,7 +15,13 @@ namespace Exarcise3 {
             IDictionary<string, int> amounPerStore = sales.GetPerStoreSales();
             foreach (KeyValuePair<string,int> obj in amounPerStore) {
                 Console.WriteLine("{0} {1}", obj.Key, obj.Value);
-            } 
+                
+            }
+            Console.WriteLine("");
+            IDictionary<string, int> amounPerProduct = sales.GetPerProductSales();
+            foreach (KeyValuePair<string, int> obj in amounPerProduct) {
+                Console.WriteLine("{0} {1}", obj.Key, obj.Value);
+            }
         }
         
     }

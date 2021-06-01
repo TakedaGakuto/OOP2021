@@ -31,7 +31,7 @@ namespace Exarcise3 {
             return sales;
         }
         
-        /*//店舗別売り上げ集計メソッド
+        //店舗別売り上げ集計メソッド
         public IDictionary<string,int> GetPerStoreSales() {
             var dict = new Dictionary<string, int>();
             foreach(var sale in _sales) {
@@ -43,9 +43,9 @@ namespace Exarcise3 {
                     dict[sale.ShopName] = sale.Amount;
             }
             return dict;
-        }*/
+        }
         //店舗別売り上げ集計メソッド
-        public IDictionary<string, int> GetPerStoreSales() {
+        public IDictionary<string, int> GetPerProductSales() {
             var dict = new Dictionary<string, int>();
             foreach (var sale in _sales) {
                 //既存の場合
