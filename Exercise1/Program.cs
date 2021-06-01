@@ -10,8 +10,8 @@ namespace Exercise1 {
             //2.1.3
             var songs = new Song[] {
             new Song("あいうえお", "かきくけこ", 200),
-            new Song("あいうえお", "かきくけこ", 200),
-            new Song("あいうえお", "かきくけこ", 200)
+            new Song("あいうえお", "かきくけこ", 100),
+            new Song("あいうえお", "かきくけこ", 220)
             };
             PrintSongs(songs);
         }
