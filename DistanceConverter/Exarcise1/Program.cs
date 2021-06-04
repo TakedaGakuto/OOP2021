@@ -38,13 +38,15 @@ namespace Exarcise1 {
         }
 
         private static void Exercise1_3(List<int> numbers) {
-            IEnumerable<int> query = numbers.Where(n => n >= 50);
-            foreach(int n in query) {
+            var nums = numbers.Where(n => n >= 50);
+            foreach(int n in nums) {
                 Console.WriteLine(n);
             }
         }
 
         private static void Exercise1_4(List<int> numbers) {
+                var nums = numbers.Select(n => n * 2).ToList();
+                nums.ForEach(Console.WriteLine);
         }
     }
 }
