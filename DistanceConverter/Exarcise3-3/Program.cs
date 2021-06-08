@@ -16,9 +16,6 @@ namespace Exarcise3_3 {
             //3.3.2
             Exarcise3_2(words);
         }
-
-       
-
         private static void Exercise3_1(List<string> names) {
             int count1 = 0;
             int count2 = 0;
@@ -29,7 +26,6 @@ namespace Exarcise3_3 {
             Console.WriteLine(count1);
             Console.WriteLine(count2);
         }
-
         private static void Exarcise3_2(List<string> words) {
 
         }
