@@ -29,16 +29,39 @@ namespace Section01 {
             #region "③"
             //var ret = GetProductA();
             #endregion
-            int count = 0;
-            //前置と後置では、加算するタイミングが違う
-            Console.WriteLine($"後置:{count++}");
-            Console.WriteLine($"前置:{++count}");
+            /*
+                        int count = 0;
+                        //前置と後置では、加算するタイミングが違う
+                        Console.WriteLine($"後置:{count++}");
+                        Console.WriteLine($"前置:{++count}");*/
+
+            /*int height;
+             var str = "123";
+            if (int.TryParse(str,out height)) {
+                Console.WriteLine(height);
+            }
+            else {
+                Console.WriteLine("変換できません");
+            }*/
+            
+            var Session = new Dictionary<string, object>();
+            Session["MyProduct"] = new Product();
+
+            var product = Session["MyProduct"] as Product;
+            if (product == null) {
+                Console.WriteLine("productが取得できなかった");
+            }
+            else {
+                Console.WriteLine("productが取得できた");
+            }
+
+
         }
-        
-        /*private static Product GetProductA() {
+
+        private static Product GetProductA() {
             Sale sale =new Sale();
             return sale?.Product;
-        }*/
+        }
     }
     #region "②"
     /*private static object DefaultMassage() {
