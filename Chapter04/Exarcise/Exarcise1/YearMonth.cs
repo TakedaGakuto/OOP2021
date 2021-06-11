@@ -31,7 +31,7 @@ namespace Exarcise1 {
         }
         //4.1.4
         public override string ToString() {
-            return $"{Year}年{Month}付";
+            return $"{Year}年{Month}月";
         }
     }
 }

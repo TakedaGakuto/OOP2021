@@ -10,11 +10,11 @@ namespace Exarcise2 {
         static void Main(string[] args) {
             //4.2.1
             var yms = new YearMonth[] {
-                new YearMonth(2001,1),
+                new YearMonth(1999,1),
                 new YearMonth(2001,12),
-                new YearMonth(2002,2),
+                new YearMonth(2001,2),
                 new YearMonth(2002,11),
-                new YearMonth(2003,12)
+                new YearMonth(2002,12)
             };
             //4.2.2
             Exarcise2_2(yms);
@@ -25,23 +25,40 @@ namespace Exarcise2 {
         }
 
         private static void Exarcise2_2(YearMonth[] yms) {
-            foreach(var n in yms) {
-                Console.WriteLine(n);
+            foreach(var ym in yms) {
+                Console.WriteLine(ym);
             }
+            Console.WriteLine();
         }
+
         //4.2.3
         static YearMonth FindFirst21C(YearMonth[] yms) {
-            foreach(var n in yms) {
-
+            foreach(var ym in yms) {
+                if(ym.Is21Century) {
+                    return ym;
+                }
             }
+            return null;
         }
 
         private static void Exarcise2_4(YearMonth[] yms) {
-            throw new NotImplementedException();
+            /*var ans = FindFirst21C(yms);
+            if(ans == null) {
+                Console.WriteLine("21世紀のデータは、見つかりませんでした。");
+            }else {
+                Console.WriteLine(ans.Year);
+            }*/
+            var yearmonth = FindFirst21C(yms);
+            var s = yearmonth != null ? yearmonth.Year.ToString() : "21世紀のデータは、見つかりませんでした。";
+            Console.WriteLine(s);
+            Console.WriteLine();
         }
 
         private static void Exarcise2_5(YearMonth[] yms) {
-            throw new NotImplementedException();
+            var yearmonthes = yms.Select(n => n.AddOneMonth()).ToArray();
+            foreach (var ym in yearmonthes) {
+                Console.WriteLine(ym);
+            }
         }
     }
 }
