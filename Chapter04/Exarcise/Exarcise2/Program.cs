@@ -55,7 +55,7 @@ namespace Exarcise2 {
         }
 
         private static void Exarcise2_5(YearMonth[] yms) {
-            var yearmonthes = yms.Select(n => n.AddOneMonth()).ToArray();
+            var yearmonthes = yms.Select(ym => ym.AddOneMonth()).ToArray();
             foreach (var ym in yearmonthes) {
                 Console.WriteLine(ym);
             }
