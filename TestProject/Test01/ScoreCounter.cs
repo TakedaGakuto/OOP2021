@@ -13,7 +13,7 @@ namespace Test01 {
 
         //メソッドの概要：CSVファイルデータを、「,」で区切り配列に追加
         private static IEnumerable<Student> ReadScore(string filePath) {
-            //
+            
             List<Student> students = new List<Student>();
             string[] Lines = File.ReadAllLines(filePath);
             foreach(string line in Lines) {
