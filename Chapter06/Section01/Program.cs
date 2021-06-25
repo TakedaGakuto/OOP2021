@@ -13,7 +13,7 @@ namespace Section01 {
             Console.WriteLine("本のページ数の合計は" + books.Sum(x => x.Pages)+ "ページ");
             Console.WriteLine("最も高価な本は、" + books.Max(x => x.Price).ToString("#,0") + "円");
             Console.WriteLine("最も安価な本は、" + books.Min(x => x.Price).ToString("#,0") + "円");
-            Console.WriteLine("500円以上の本は、" + books.Where(x => x.Price >= 500).Count()+"冊");
+            Console.WriteLine("500円以上の本は、" + books.Where(x => 500 <= x.Price).Count()+"冊");
         }
     }
 }
