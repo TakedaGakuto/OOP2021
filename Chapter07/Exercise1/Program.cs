@@ -18,12 +18,14 @@ namespace Exercise1 {
         private static void Exercise1_1(string str) {
             Dictionary<char, int> dict = new Dictionary<char, int>();
             foreach(var c in str.ToUpper().Replace(" ","").OrderBy(x=>x)) {
-                if (dict.ContainsKey(c)) {
-                    dict[c] += 1;
-                }
-                else {
-                    dict[c] = 1;
-                }
+                //if ('A' <= c && c <= 'Z') {
+                    if (dict.ContainsKey(c)) {
+                        dict[c] += 1;
+                    }
+                    else {
+                        dict[c] = 1;
+                    }
+                //}
             }
             foreach(var d in dict) {
                 Console.WriteLine("'{0}':{1}",d.Key,d.Value);
