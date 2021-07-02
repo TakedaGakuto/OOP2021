@@ -17,7 +17,7 @@ namespace Exercise1 {
 
         private static void Exercise1_1(string str) {
             Dictionary<char, int> dict = new Dictionary<char, int>();
-            foreach(var c in str.ToUpper().Replace(" ","").OrderBy(x=>x)) {
+            foreach(var c in str.ToUpper().Replace(" ","")) {
                 //if ('A' <= c && c <= 'Z') {
                     if (dict.ContainsKey(c)) {
                         dict[c] += 1;
@@ -27,7 +27,7 @@ namespace Exercise1 {
                     }
                 //}
             }
-            foreach(var d in dict) {
+            foreach(var d in dict.OrderBy(d=>d.Key)) {
                 Console.WriteLine("'{0}':{1}",d.Key,d.Value);
             }
         }
