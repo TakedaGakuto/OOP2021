@@ -16,10 +16,10 @@ namespace Section1 {
 
         private void RunButton_Click(object sender, EventArgs e) {
             //var today = DateTime.Today;
-            var today = new DateTime((int)nudYear.Value ,(int)nudMonth.Value,(int)nudDay.Value);
-            DayOfWeek dayofweek = today.DayOfWeek;
+            var day = new DateTime((int)nudYear.Value ,(int)nudMonth.Value,(int)nudDay.Value);
+            DayOfWeek dayofweek = day.DayOfWeek;
             
-            switch (dayofweek) {
+            /*switch (dayofweek) {
                 case DayOfWeek.Sunday:
                     tbOutput.Text = ("日曜日です。");
                     break;
@@ -43,7 +43,7 @@ namespace Section1 {
                     break;
                 default:
                     break;
-            }
+            }*/
             //閏年
             var isLeapYear = DateTime.IsLeapYear((int)nudYear.Value);
             if (isLeapYear) {
@@ -52,11 +52,21 @@ namespace Section1 {
             else {
                 tbLeapYear.Text = "閏年ではありません。";
             }
-            //経過日数
+            /*//経過日数
             var date1 = DateTime.Now;
             var date2 = new DateTime((int)nudYear.Value, (int)nudMonth.Value, (int)nudDay.Value);
             TimeSpan ans = date1.Date - date2.Date;
-            tbOutput.Text = "今日との差は" + Math.Abs(ans.Days) + "日です。";
+            tbOutput.Text = "今日との差は" + Math.Abs(ans.Days) + "日です。";*/
+            //年齢
+            var birthday = GetAge(dtp1.Value, DateTime.Now);
+            tbOutput.Text = birthday.ToString();
+        }
+        public static int GetAge(DateTime birthday,DateTime targetDay) {
+            var age = targetDay.Year - birthday.Year;
+            if (targetDay < birthday.AddYears(age)) {
+                age--;
+            }
+            return age;
         }
     }
 }

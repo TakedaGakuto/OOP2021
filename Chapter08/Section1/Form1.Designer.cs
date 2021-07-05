@@ -33,6 +33,7 @@ namespace Section1 {
             this.nudDay = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.tbLeapYear = new System.Windows.Forms.TextBox();
+            this.dtp1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.nudYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMonth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDay)).BeginInit();
@@ -49,7 +50,7 @@ namespace Section1 {
             // RunButton
             // 
             this.RunButton.Font = new System.Drawing.Font("MS UI Gothic", 18F);
-            this.RunButton.Location = new System.Drawing.Point(227, 143);
+            this.RunButton.Location = new System.Drawing.Point(215, 184);
             this.RunButton.Name = "RunButton";
             this.RunButton.Size = new System.Drawing.Size(98, 31);
             this.RunButton.TabIndex = 1;
@@ -164,11 +165,19 @@ namespace Section1 {
             this.tbLeapYear.Size = new System.Drawing.Size(447, 31);
             this.tbLeapYear.TabIndex = 4;
             // 
+            // dtp1
+            // 
+            this.dtp1.Location = new System.Drawing.Point(135, 133);
+            this.dtp1.Name = "dtp1";
+            this.dtp1.Size = new System.Drawing.Size(200, 19);
+            this.dtp1.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dtp1);
             this.Controls.Add(this.tbLeapYear);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -199,6 +208,7 @@ namespace Section1 {
         private System.Windows.Forms.NumericUpDown nudDay;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbLeapYear;
+        private System.Windows.Forms.DateTimePicker dtp1;
     }
 }
 
