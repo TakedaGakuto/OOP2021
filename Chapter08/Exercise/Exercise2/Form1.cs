@@ -42,10 +42,11 @@ namespace Exercise2
         private void btReset_Click(object sender, EventArgs e) {
             lbTimer.Text = "00:00:00.00";
             sw.Restart();
+            lbLapTime.Items.Clear();
         }
         //ラップボタンクリック時
         private void btlap_Click(object sender, EventArgs e) {
-        
+            lbLapTime.Items.Insert(0,lbTimer.Text);
         }
     }
 }

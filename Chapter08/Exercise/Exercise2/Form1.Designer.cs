@@ -29,9 +29,9 @@ namespace Exercise2 {
             this.btReset = new System.Windows.Forms.Button();
             this.btStop = new System.Windows.Forms.Button();
             this.btlap = new System.Windows.Forms.Button();
-            this.tbLapTime = new System.Windows.Forms.TextBox();
             this.tm = new System.Windows.Forms.Timer(this.components);
             this.lbTimer = new System.Windows.Forms.Label();
+            this.lbLapTime = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btStart
@@ -59,7 +59,7 @@ namespace Exercise2 {
             // btStop
             // 
             this.btStop.Font = new System.Drawing.Font("MS UI Gothic", 18F);
-            this.btStop.Location = new System.Drawing.Point(14, 139);
+            this.btStop.Location = new System.Drawing.Point(12, 138);
             this.btStop.Name = "btStop";
             this.btStop.Size = new System.Drawing.Size(92, 81);
             this.btStop.TabIndex = 1;
@@ -70,21 +70,13 @@ namespace Exercise2 {
             // btlap
             // 
             this.btlap.Font = new System.Drawing.Font("MS UI Gothic", 18F);
-            this.btlap.Location = new System.Drawing.Point(112, 138);
+            this.btlap.Location = new System.Drawing.Point(110, 138);
             this.btlap.Name = "btlap";
             this.btlap.Size = new System.Drawing.Size(92, 82);
             this.btlap.TabIndex = 1;
             this.btlap.Text = "ラップ";
             this.btlap.UseVisualStyleBackColor = true;
             this.btlap.Click += new System.EventHandler(this.btlap_Click);
-            // 
-            // tbLapTime
-            // 
-            this.tbLapTime.Location = new System.Drawing.Point(210, 52);
-            this.tbLapTime.Multiline = true;
-            this.tbLapTime.Name = "tbLapTime";
-            this.tbLapTime.Size = new System.Drawing.Size(182, 168);
-            this.tbLapTime.TabIndex = 2;
             // 
             // lbTimer
             // 
@@ -96,13 +88,23 @@ namespace Exercise2 {
             this.lbTimer.TabIndex = 3;
             this.lbTimer.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lbLapTime
+            // 
+            this.lbLapTime.FormattingEnabled = true;
+            this.lbLapTime.HorizontalScrollbar = true;
+            this.lbLapTime.ItemHeight = 12;
+            this.lbLapTime.Location = new System.Drawing.Point(209, 53);
+            this.lbLapTime.Name = "lbLapTime";
+            this.lbLapTime.Size = new System.Drawing.Size(159, 172);
+            this.lbLapTime.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 292);
+            this.Controls.Add(this.lbLapTime);
             this.Controls.Add(this.lbTimer);
-            this.Controls.Add(this.tbLapTime);
             this.Controls.Add(this.btlap);
             this.Controls.Add(this.btStop);
             this.Controls.Add(this.btReset);
@@ -111,7 +113,6 @@ namespace Exercise2 {
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -120,9 +121,9 @@ namespace Exercise2 {
         private System.Windows.Forms.Button btReset;
         private System.Windows.Forms.Button btStop;
         private System.Windows.Forms.Button btlap;
-        private System.Windows.Forms.TextBox tbLapTime;
         private System.Windows.Forms.Timer tm;
         private System.Windows.Forms.Label lbTimer;
+        private System.Windows.Forms.ListBox lbLapTime;
     }
 }
 
