@@ -38,7 +38,7 @@ namespace CarReportSystem {
             this.rbSubaru = new System.Windows.Forms.RadioButton();
             this.rbForeign = new System.Windows.Forms.RadioButton();
             this.rbOther = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbMakers = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tbReport = new System.Windows.Forms.TextBox();
@@ -57,7 +57,7 @@ namespace CarReportSystem {
             this.ofdPictureOpen = new System.Windows.Forms.OpenFileDialog();
             this.sfdFileSave = new System.Windows.Forms.SaveFileDialog();
             this.ofdFileOpen = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox1.SuspendLayout();
+            this.gbMakers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.SuspendLayout();
@@ -140,6 +140,7 @@ namespace CarReportSystem {
             this.rbToyota.Name = "rbToyota";
             this.rbToyota.Size = new System.Drawing.Size(47, 16);
             this.rbToyota.TabIndex = 5;
+            this.rbToyota.Tag = "0";
             this.rbToyota.Text = "トヨタ";
             this.rbToyota.UseVisualStyleBackColor = true;
             // 
@@ -150,6 +151,7 @@ namespace CarReportSystem {
             this.rbNissan.Name = "rbNissan";
             this.rbNissan.Size = new System.Drawing.Size(47, 16);
             this.rbNissan.TabIndex = 5;
+            this.rbNissan.Tag = "1";
             this.rbNissan.Text = "日産";
             this.rbNissan.UseVisualStyleBackColor = true;
             // 
@@ -160,6 +162,7 @@ namespace CarReportSystem {
             this.rbHonda.Name = "rbHonda";
             this.rbHonda.Size = new System.Drawing.Size(51, 16);
             this.rbHonda.TabIndex = 5;
+            this.rbHonda.Tag = "2";
             this.rbHonda.Text = "ホンダ";
             this.rbHonda.UseVisualStyleBackColor = true;
             // 
@@ -170,6 +173,7 @@ namespace CarReportSystem {
             this.rbSubaru.Name = "rbSubaru";
             this.rbSubaru.Size = new System.Drawing.Size(52, 16);
             this.rbSubaru.TabIndex = 5;
+            this.rbSubaru.Tag = "3";
             this.rbSubaru.Text = "スバル";
             this.rbSubaru.UseVisualStyleBackColor = true;
             // 
@@ -180,32 +184,36 @@ namespace CarReportSystem {
             this.rbForeign.Name = "rbForeign";
             this.rbForeign.Size = new System.Drawing.Size(47, 16);
             this.rbForeign.TabIndex = 5;
+            this.rbForeign.Tag = "4";
             this.rbForeign.Text = "外車";
             this.rbForeign.UseVisualStyleBackColor = true;
             // 
             // rbOther
             // 
             this.rbOther.AutoSize = true;
+            this.rbOther.Checked = true;
             this.rbOther.Location = new System.Drawing.Point(271, 12);
             this.rbOther.Name = "rbOther";
             this.rbOther.Size = new System.Drawing.Size(54, 16);
             this.rbOther.TabIndex = 5;
+            this.rbOther.TabStop = true;
+            this.rbOther.Tag = "5";
             this.rbOther.Text = "その他";
             this.rbOther.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // gbMakers
             // 
-            this.groupBox1.Controls.Add(this.rbToyota);
-            this.groupBox1.Controls.Add(this.rbOther);
-            this.groupBox1.Controls.Add(this.rbNissan);
-            this.groupBox1.Controls.Add(this.rbForeign);
-            this.groupBox1.Controls.Add(this.rbHonda);
-            this.groupBox1.Controls.Add(this.rbSubaru);
-            this.groupBox1.Location = new System.Drawing.Point(91, 97);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 34);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
+            this.gbMakers.Controls.Add(this.rbToyota);
+            this.gbMakers.Controls.Add(this.rbOther);
+            this.gbMakers.Controls.Add(this.rbNissan);
+            this.gbMakers.Controls.Add(this.rbForeign);
+            this.gbMakers.Controls.Add(this.rbHonda);
+            this.gbMakers.Controls.Add(this.rbSubaru);
+            this.gbMakers.Location = new System.Drawing.Point(91, 97);
+            this.gbMakers.Name = "gbMakers";
+            this.gbMakers.Size = new System.Drawing.Size(351, 34);
+            this.gbMakers.TabIndex = 6;
+            this.gbMakers.TabStop = false;
             // 
             // label5
             // 
@@ -305,6 +313,7 @@ namespace CarReportSystem {
             this.btArticleAdd.TabIndex = 10;
             this.btArticleAdd.Text = "追加";
             this.btArticleAdd.UseVisualStyleBackColor = true;
+            this.btArticleAdd.Click += new System.EventHandler(this.btArticleAdd_Click);
             // 
             // btArticleFix
             // 
@@ -384,7 +393,7 @@ namespace CarReportSystem {
             this.Controls.Add(this.pbPicture);
             this.Controls.Add(this.dgvRegistData);
             this.Controls.Add(this.tbReport);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbMakers);
             this.Controls.Add(this.cbCarName);
             this.Controls.Add(this.cbEditorName);
             this.Controls.Add(this.comboBox1);
@@ -400,8 +409,8 @@ namespace CarReportSystem {
             this.MaximizeBox = false;
             this.Name = "fmMain";
             this.Text = "試乗レポート管理システム";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbMakers.ResumeLayout(false);
+            this.gbMakers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.ResumeLayout(false);
@@ -425,7 +434,7 @@ namespace CarReportSystem {
         private System.Windows.Forms.RadioButton rbSubaru;
         private System.Windows.Forms.RadioButton rbForeign;
         private System.Windows.Forms.RadioButton rbOther;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbMakers;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbReport;
