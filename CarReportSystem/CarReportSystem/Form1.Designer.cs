@@ -266,6 +266,7 @@ namespace CarReportSystem {
             // 
             // pbPicture
             // 
+            this.pbPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbPicture.Location = new System.Drawing.Point(485, 77);
             this.pbPicture.Name = "pbPicture";
             this.pbPicture.Size = new System.Drawing.Size(253, 229);
@@ -293,6 +294,7 @@ namespace CarReportSystem {
             this.btPictureDelete.TabIndex = 10;
             this.btPictureDelete.Text = "削除";
             this.btPictureDelete.UseVisualStyleBackColor = true;
+            this.btPictureDelete.Click += new System.EventHandler(this.btPictureDelete_Click);
             // 
             // btArticleAdd
             // 
@@ -316,8 +318,9 @@ namespace CarReportSystem {
             // 
             // btArticleDelete
             // 
+            this.btArticleDelete.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btArticleDelete.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.btArticleDelete.Location = new System.Drawing.Point(644, 335);
+            this.btArticleDelete.Location = new System.Drawing.Point(644, 336);
             this.btArticleDelete.Name = "btArticleDelete";
             this.btArticleDelete.Size = new System.Drawing.Size(75, 36);
             this.btArticleDelete.TabIndex = 10;
@@ -394,7 +397,6 @@ namespace CarReportSystem {
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label1);
-            this.Enabled = false;
             this.MaximizeBox = false;
             this.Name = "fmMain";
             this.Text = "試乗レポート管理システム";
@@ -435,13 +437,13 @@ namespace CarReportSystem {
         private System.Windows.Forms.Button btPictureDelete;
         private System.Windows.Forms.Button btArticleAdd;
         private System.Windows.Forms.Button btArticleFix;
-        private System.Windows.Forms.Button btArticleDelete;
         private System.Windows.Forms.Button btArticleOpen;
         private System.Windows.Forms.Button btArticleSave;
         private System.Windows.Forms.Button btExit;
         private System.Windows.Forms.OpenFileDialog ofdPictureOpen;
         private System.Windows.Forms.SaveFileDialog sfdFileSave;
         private System.Windows.Forms.OpenFileDialog ofdFileOpen;
+        public System.Windows.Forms.Button btArticleDelete;
     }
 }
 

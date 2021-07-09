@@ -23,5 +23,9 @@ namespace CarReportSystem {
                 pbPicture.Image = Image.FromFile(ofdFileOpen.FileName);
             }
         }
+
+        private void btPictureDelete_Click(object sender, EventArgs e) {
+            pbPicture.Image = null;
+        }
     }
 }
