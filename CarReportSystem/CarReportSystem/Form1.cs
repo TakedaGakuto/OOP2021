@@ -71,5 +71,48 @@ namespace CarReportSystem {
                 cbCarName.Items.Add(CarName);
             }
         }
+        private void dgvRegistData_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if (e.RowIndex < 0) {
+                return;
+            }
+            CarReport selectedCar = listCarReport[e.RowIndex];
+            dtpDate.Value = selectedCar.Date;
+            cbEditorName.Text = selectedCar.EditorName;
+            cbCarName.Text = selectedCar.CarName;
+            tbReport.Text = selectedCar.Report;
+            pbPicture.Image = selectedCar.Picture;
+            selectmaker(selectedCar.Maker);
+        }
+        private void selectmaker(CarReport.MakerGroup maker) {
+            switch (maker) {
+                case CarReport.MakerGroup.トヨタ:
+                    rbToyota.Checked = true;
+                    break;
+                case CarReport.MakerGroup.日産:
+                    rbNissan.Checked = true;
+                    break;
+                case CarReport.MakerGroup.ホンダ:
+                    rbHonda.Checked = true;
+                    break;
+                case CarReport.MakerGroup.スバル:
+                    rbSubaru.Checked = true;
+                    break;
+                case CarReport.MakerGroup.外車:
+                    rbForeign.Checked = true;
+                    break;
+                default:
+                    rbOther.Checked = true;
+                    break;
+            }
+        }
+        private void btArticleDelete_Click(object sender, EventArgs e) {
+            listCarReport.RemoveAt(dgvRegistData.CurrentRow.Index);
+        }
+
+        private void btArticleFix_Click(object sender, EventArgs e) {
+            listCarReport[dgvRegistData.CurrentRow.Index].UpData(dtpDate.Value, cbEditorName.Text,
+                                                                 selectedGroup(), cbCarName.Text, 
+                                                                 tbReport.Text, pbPicture.Image);
+        }
     }
 }

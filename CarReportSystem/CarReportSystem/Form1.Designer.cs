@@ -49,7 +49,7 @@ namespace CarReportSystem {
             this.btPictureOpen = new System.Windows.Forms.Button();
             this.btPictureDelete = new System.Windows.Forms.Button();
             this.btArticleAdd = new System.Windows.Forms.Button();
-            this.btArticleFix = new System.Windows.Forms.Button();
+            this.btupdata = new System.Windows.Forms.Button();
             this.btArticleDelete = new System.Windows.Forms.Button();
             this.btArticleOpen = new System.Windows.Forms.Button();
             this.btArticleSave = new System.Windows.Forms.Button();
@@ -265,12 +265,15 @@ namespace CarReportSystem {
             // 
             // dgvRegistData
             // 
+            this.dgvRegistData.AllowUserToAddRows = false;
             this.dgvRegistData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegistData.Location = new System.Drawing.Point(91, 377);
             this.dgvRegistData.Name = "dgvRegistData";
             this.dgvRegistData.RowTemplate.Height = 21;
+            this.dgvRegistData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRegistData.Size = new System.Drawing.Size(647, 225);
             this.dgvRegistData.TabIndex = 8;
+            this.dgvRegistData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistData_CellClick);
             // 
             // pbPicture
             // 
@@ -315,15 +318,16 @@ namespace CarReportSystem {
             this.btArticleAdd.UseVisualStyleBackColor = true;
             this.btArticleAdd.Click += new System.EventHandler(this.btArticleAdd_Click);
             // 
-            // btArticleFix
+            // btupdata
             // 
-            this.btArticleFix.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.btArticleFix.Location = new System.Drawing.Point(563, 335);
-            this.btArticleFix.Name = "btArticleFix";
-            this.btArticleFix.Size = new System.Drawing.Size(75, 36);
-            this.btArticleFix.TabIndex = 10;
-            this.btArticleFix.Text = "修正";
-            this.btArticleFix.UseVisualStyleBackColor = true;
+            this.btupdata.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.btupdata.Location = new System.Drawing.Point(563, 335);
+            this.btupdata.Name = "btupdata";
+            this.btupdata.Size = new System.Drawing.Size(75, 36);
+            this.btupdata.TabIndex = 10;
+            this.btupdata.Text = "修正";
+            this.btupdata.UseVisualStyleBackColor = true;
+            this.btupdata.Click += new System.EventHandler(this.btArticleFix_Click);
             // 
             // btArticleDelete
             // 
@@ -335,6 +339,7 @@ namespace CarReportSystem {
             this.btArticleDelete.TabIndex = 10;
             this.btArticleDelete.Text = "削除";
             this.btArticleDelete.UseVisualStyleBackColor = true;
+            this.btArticleDelete.Click += new System.EventHandler(this.btArticleDelete_Click);
             // 
             // btArticleOpen
             // 
@@ -387,7 +392,7 @@ namespace CarReportSystem {
             this.Controls.Add(this.btArticleOpen);
             this.Controls.Add(this.btPictureOpen);
             this.Controls.Add(this.btArticleDelete);
-            this.Controls.Add(this.btArticleFix);
+            this.Controls.Add(this.btupdata);
             this.Controls.Add(this.btPictureDelete);
             this.Controls.Add(this.btArticleAdd);
             this.Controls.Add(this.pbPicture);
@@ -445,7 +450,7 @@ namespace CarReportSystem {
         private System.Windows.Forms.Button btPictureOpen;
         private System.Windows.Forms.Button btPictureDelete;
         private System.Windows.Forms.Button btArticleAdd;
-        private System.Windows.Forms.Button btArticleFix;
+        private System.Windows.Forms.Button btupdata;
         private System.Windows.Forms.Button btArticleOpen;
         private System.Windows.Forms.Button btArticleSave;
         private System.Windows.Forms.Button btExit;

@@ -18,14 +18,14 @@ namespace CarReportSystem {
         public enum MakerGroup {
             トヨタ, 日産, ホンダ, スバル, 外車, その他,
         }
-        /*public CarReport(DateTime date,string EditorName,MakerGroup maker,string carName,string report,Image Pictire){
+        public void UpData(DateTime date,string EditorName,MakerGroup maker,string carName,string report,Image Pictire){
             this.Date = date;
             this.EditorName = EditorName;
             this.Maker = maker;
-            this.CarName = CarName;
+            this.CarName = carName;
             this.Report = report;
             this.Picture = Picture;
 
-        }*/
+        }
     }
 }
