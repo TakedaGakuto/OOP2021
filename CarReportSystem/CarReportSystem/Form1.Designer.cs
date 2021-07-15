@@ -333,7 +333,7 @@ namespace CarReportSystem {
             // 
             this.btArticleDelete.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btArticleDelete.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.btArticleDelete.Location = new System.Drawing.Point(644, 336);
+            this.btArticleDelete.Location = new System.Drawing.Point(644, 335);
             this.btArticleDelete.Name = "btArticleDelete";
             this.btArticleDelete.Size = new System.Drawing.Size(75, 36);
             this.btArticleDelete.TabIndex = 10;
@@ -350,6 +350,7 @@ namespace CarReportSystem {
             this.btArticleOpen.TabIndex = 11;
             this.btArticleOpen.Text = "開く...";
             this.btArticleOpen.UseVisualStyleBackColor = true;
+            this.btArticleOpen.Click += new System.EventHandler(this.btArticleOpen_Click);
             // 
             // btArticleSave
             // 
@@ -360,6 +361,7 @@ namespace CarReportSystem {
             this.btArticleSave.TabIndex = 11;
             this.btArticleSave.Text = "保存...";
             this.btArticleSave.UseVisualStyleBackColor = true;
+            this.btArticleSave.Click += new System.EventHandler(this.btArticleSave_Click);
             // 
             // btExit
             // 

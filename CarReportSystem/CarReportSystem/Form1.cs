@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarReportSystem {
+    
     public partial class fmMain : Form {
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
 
@@ -113,6 +116,28 @@ namespace CarReportSystem {
             listCarReport[dgvRegistData.CurrentRow.Index].UpData(dtpDate.Value, cbEditorName.Text,
                                                                  selectedGroup(), cbCarName.Text, 
                                                                  tbReport.Text, pbPicture.Image);
+            dgvRegistData.Refresh(); //コントロールの強制描画
+        }
+        private void btArticleSave_Click(object sender, EventArgs e) {
+            if(sfdFileSave.ShowDialog() == DialogResult.OK) {
+                //シリアル化
+                var bf = new BinaryFormatter();
+                using (FileStream fs = File.Open(sfdFileSave.FileName,FileMode.Create)) {
+                    bf.Serialize(fs,listCarReport);
+                }
+            }
+        }
+
+        private void btArticleOpen_Click(object sender, EventArgs e) {
+            if(ofdFileOpen.ShowDialog() == DialogResult.OK) {
+                //逆シリアル化
+                var bf = new BinaryFormatter();
+                using (FileStream fs = File.Open(ofdFileOpen.FileName,FileMode.Open,FileAccess.Read)){
+                    listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
+                    dgvRegistData.DataSource = null;
+                    dgvRegistData.DataSource = listCarReport;
+                }
+            }
         }
     }
 }
