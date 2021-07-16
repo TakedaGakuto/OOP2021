@@ -14,11 +14,11 @@ namespace CarReportSystem {
     
     public partial class fmMain : Form {
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
-
-
+        
         public fmMain() {
             InitializeComponent();
             dgvRegistData.DataSource = listCarReport;
+            dgvRegistData.Columns[5].Visible = false;
         }
 
         private void btExit_Click(object sender, EventArgs e) {
@@ -119,24 +119,45 @@ namespace CarReportSystem {
             dgvRegistData.Refresh(); //コントロールの強制描画
         }
         private void btArticleSave_Click(object sender, EventArgs e) {
+            
             if(sfdFileSave.ShowDialog() == DialogResult.OK) {
-                //シリアル化
-                var bf = new BinaryFormatter();
-                using (FileStream fs = File.Open(sfdFileSave.FileName,FileMode.Create)) {
-                    bf.Serialize(fs,listCarReport);
-                }
+                try{	        
+		            //シリアル化
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(sfdFileSave.FileName,FileMode.Create)) {
+                        bf.Serialize(fs,listCarReport);
+                    }
+	            }
+	            catch (Exception ex){
+                    MessageBox.Show(ex.Message+"\r\nこの形式のファイルは保存できません。");
+	            }
             }
         }
 
         private void btArticleOpen_Click(object sender, EventArgs e) {
             if(ofdFileOpen.ShowDialog() == DialogResult.OK) {
+                try { 
                 //逆シリアル化
-                var bf = new BinaryFormatter();
-                using (FileStream fs = File.Open(ofdFileOpen.FileName,FileMode.Open,FileAccess.Read)){
-                    listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
-                    dgvRegistData.DataSource = null;
-                    dgvRegistData.DataSource = listCarReport;
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(ofdFileOpen.FileName,FileMode.Open,FileAccess.Read)){
+                        listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvRegistData.DataSource = null;
+                        dgvRegistData.DataSource = listCarReport;
+                    }
                 }
+                catch (Exception ex){
+                    MessageBox.Show(ex.Message+"\r\nこの形式のファイルを開くことはできません。");
+                    //MessageBox.Show("この形式のファイルを開くことはできません。");
+                }
+                //コンボボックスに登録
+                foreach(var items in listCarReport) {
+                    setCbCarName(items.CarName);
+                    setCbName(items.EditorName);
+                }
+                /*for(int i = 0; i < dgvRegistData.RowCount; i++) {
+                    setCbName(dgvRegistData.Rows[1].Cells[1].Value.ToString());
+                    setCbCarName(dgvRegistData.Rows[1].Cells[3].Value.ToString());
+                }*/
             }
         }
     }
