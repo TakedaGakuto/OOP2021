@@ -20,26 +20,18 @@ namespace Exercise2
         }
         private void btOpen_Click(object sender, EventArgs e)
         {
-            int count = 0;
             if (ofdOpenFile.ShowDialog() == DialogResult.OK)
             {
-                using (var reader = new StreamReader(ofdOpenFile.FileName, Encoding.UTF8))
+                var lines = File.ReadLines(ofdOpenFile.FileName).Select((s, ix) => string.Format("{0,4}:{1}", ix + 1, s)).ToArray();
+                if (sfdSaveFile.ShowDialog() == DialogResult.OK) { }
                 {
-                    while (!reader.EndOfStream)
+                    using (var writer = new StreamWriter(sfdSaveFile.FileName))
                     {
-                        var line = reader.ReadLine(); //1行読み込み
-                        count++;
-                        tbOutPut.Text += count + ":"+ line+"\r\n";
+                        foreach(var line in lines)
+                        {
+                            writer.WriteLine(line);
+                        }
                     }
-                }
-            }
-        }
-        private void btSave_Click(object sender, EventArgs e)
-        {
-            if (sfdSaveFile.ShowDialog() == DialogResult.OK) {
-                using (var writer = new StreamWriter(sfdSaveFile.FileName))
-                {
-                    writer.WriteLine(tbOutPut.Text);
                 }
             }
         }

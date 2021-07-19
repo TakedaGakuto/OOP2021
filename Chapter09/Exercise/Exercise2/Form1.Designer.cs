@@ -31,9 +31,7 @@ namespace Exercise2
         {
             this.btOpen = new System.Windows.Forms.Button();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
-            this.tbOutPut = new System.Windows.Forms.TextBox();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
-            this.btSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btOpen
@@ -51,37 +49,15 @@ namespace Exercise2
             // 
             this.ofdOpenFile.FileName = "openFileDialog1";
             // 
-            // tbOutPut
-            // 
-            this.tbOutPut.Location = new System.Drawing.Point(42, 99);
-            this.tbOutPut.Multiline = true;
-            this.tbOutPut.Name = "tbOutPut";
-            this.tbOutPut.Size = new System.Drawing.Size(721, 339);
-            this.tbOutPut.TabIndex = 1;
-            // 
-            // btSave
-            // 
-            this.btSave.Font = new System.Drawing.Font("MS UI Gothic", 18F);
-            this.btSave.Location = new System.Drawing.Point(140, 57);
-            this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(73, 34);
-            this.btSave.TabIndex = 2;
-            this.btSave.Text = "保存";
-            this.btSave.UseVisualStyleBackColor = true;
-            this.btSave.Click += new System.EventHandler(this.btSave_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btSave);
-            this.Controls.Add(this.tbOutPut);
+            this.ClientSize = new System.Drawing.Size(266, 231);
             this.Controls.Add(this.btOpen);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -89,9 +65,7 @@ namespace Exercise2
 
         private System.Windows.Forms.Button btOpen;
         private System.Windows.Forms.OpenFileDialog ofdOpenFile;
-        private System.Windows.Forms.TextBox tbOutPut;
         private System.Windows.Forms.SaveFileDialog sfdSaveFile;
-        private System.Windows.Forms.Button btSave;
     }
 }
 
