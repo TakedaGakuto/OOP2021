@@ -49,12 +49,9 @@ namespace Execise1
         {
             var xdoc = XDocument.Load(file);
             var xelements = xdoc.Root.Elements()
-                                     .OrderByDescending(x => (int)(x.Element("teammembers")));
-            foreach(var xlist in xelements)
-            {
-                var xname = xlist.Element("name");
-                Console.WriteLine(xname.FirstNode);
-            }
+                                     .OrderByDescending(x => (int)(x.Element("teammembers"))).First();
+            XElement xname = xelements.Element("name");
+            Console.WriteLine(xname.Value);
         }
     }
 }
