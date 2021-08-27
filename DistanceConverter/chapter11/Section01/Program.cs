@@ -16,11 +16,10 @@ namespace Section01
                 .Where(x=>((DateTime)x.Element("birth")).Year >= 1900);
             var xelements = xdoc.Root.Elements()
                 .OrderBy(x => (string)(x.Element("birth")));*/
-            foreach (var xnovelist in xdoc.Root.Elements())
+            var xtitles = xdoc.Root.Descendants("title");
+            foreach (var xtitle in xtitles)
             {
-                var xname = xnovelist.Element("name");
-                var works = xnovelist.Element("masterpieces").Elements("title").Select(x => x.Value);
-                Console.WriteLine("{0} - {1}",xname.Value,string.Join(",",works));
+                Console.WriteLine(xtitle.Value);
             }
         }
     }
