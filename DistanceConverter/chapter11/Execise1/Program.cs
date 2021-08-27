@@ -36,7 +36,7 @@ namespace Execise1
         {
             var xdoc = XDocument.Load(file);
             var xelements = xdoc.Root.Elements()
-                                     .OrderBy(x => (x.Element("firstplayed")));
+                                     .OrderBy(x => (int)(x.Element("firstplayed")));
             foreach(var xlist in xelements)
             {
                 var xname = xlist.Element("name");
