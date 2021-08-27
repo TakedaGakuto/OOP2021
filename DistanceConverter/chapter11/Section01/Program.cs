@@ -16,14 +16,16 @@ namespace Section01
                 .Where(x=>((DateTime)x.Element("birth")).Year >= 1900);
             var xelements = xdoc.Root.Elements()
                 .OrderBy(x => (string)(x.Element("birth")));*/
-            
+
+            var novelists = ReadNovelists();
+
             foreach (var novelist in novelists)
             {
-                Console.WriteLine("{0} ({1}-{2})",novelist.Name,novelist.Birth.Year,novelist.Death.Year);
+                Console.WriteLine("{0} ({1}-{2}-{3})",novelist.Name,novelist.Birth.Year,novelist.Death.Year,string.Join(",",novelist.Masterpieces));
             }
         }
 
-        public IEnumerable<Novelist> ReadNovelists()
+        public static IEnumerable<Novelist> ReadNovelists()
         {
             var xdoc = XDocument.Load("novelists.xml");
             var novelists = xdoc.Root.Elements()
