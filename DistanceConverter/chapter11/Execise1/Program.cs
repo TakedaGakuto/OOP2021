@@ -47,7 +47,14 @@ namespace Execise1
 
         private static void Execise1_3(string file)
         {
-     
+            var xdoc = XDocument.Load(file);
+            var xelements = xdoc.Root.Elements()
+                                     .OrderByDescending(x => (int)(x.Element("teammembers")));
+            foreach(var xlist in xelements)
+            {
+                var xname = xlist.Element("name");
+                Console.WriteLine(xname.FirstNode);
+            }
         }
     }
 }
