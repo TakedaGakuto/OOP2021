@@ -19,7 +19,10 @@ namespace Execise1
             Console.WriteLine("----------");
             Execise1_3(file);
             Console.WriteLine("----------");
+            Execise1_4(file);
         }
+
+        
 
         private static void Execise1_1(string file)
         {
@@ -29,7 +32,7 @@ namespace Execise1
             {
                 XElement xname = xlist.Element("name");
                 XElement xmember = xlist.Element("teammembers");
-                Console.WriteLine("競技名:{0}チームメンバー数:{1}",xname.Value,xmember.Value);
+                Console.WriteLine("競技名:{0} チームメンバー数:{1}",xname.Value,xmember.Value);
             }
         }
         private static void Execise1_2(string file)
@@ -53,5 +56,20 @@ namespace Execise1
             XElement xname = xelements.Element("name");
             Console.WriteLine(xname.Value);
         }
+
+        private static void Execise1_4(string file)
+        {
+            var newfile = "sports.xml";
+            var element = new XElement("ballsport",
+                           new XElement("name","サッカー"),
+                           new XElement("kanji", "蹴球"),
+                           new XElement("teammembers", "11"),
+                           new XElement("firstplayed", "1863"));
+
+            var xdoc = XDocument.Load("Sample.xml");
+            xdoc.Root.Add(element);
+            xdoc.Save(newfile);
+        }
+
     }
 }
