@@ -19,10 +19,9 @@ namespace Execise2
                 XElement xkanji = xlists.Element("kanji");
                 XElement xyomi = xlists.Element("yomi");
 
-                var element = new XElement("difficultkanji",
-                              new XElement("word",
+                var element = new XElement("difficaltkanji",
                               new XElement("kanji", xkanji.Value),
-                              new XElement("yomi", xyomi.Value)));
+                              new XElement("yomi", xyomi.Value));
                 xdoc.Root.Add(element);
             }
             xdoc.Save(newfile);
