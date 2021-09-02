@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -17,7 +18,8 @@ namespace Section04
         public Program()
         {
             //DownloadString();
-            DownloadFileAsync();
+            //DownloadFileAsync();
+            OpenReadSample();
         }
         //Webページ取得
         public void DownloadString()
@@ -27,7 +29,7 @@ namespace Section04
             var html = wc.DownloadString("https://yahoo.co.jp/");
             Console.WriteLine(html);
         }
-        //リスト14.17
+        //リスト14.17(非同期)
         private void DownloadFileAsync()
         {
             var wc = new WebClient();
@@ -52,5 +54,16 @@ namespace Section04
             Console.WriteLine("ダウンロード完了");
         }
 
+        //リスト14.18(ストリーム)
+        public void OpenReadSample()
+        {
+            var wc = new WebClient();
+            using (var stream = wc.OpenRead(@"https://yahoo.co.jp/"))
+            using (var sr = new StreamReader(stream, Encoding.UTF8))
+            {
+                string html = sr.ReadToEnd();
+                Console.WriteLine(html);
+            }
+        }
     }
 }
