@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Section04
 {
@@ -19,7 +21,13 @@ namespace Section04
         {
             //DownloadString();
             //DownloadFileAsync();
-            OpenReadSample();
+            //OpenReadSample();
+            var result = GetWeatherReportFromYahoo(4610);
+            foreach(var s in result)
+            {
+                Console.WriteLine(s);
+            }
+            Console.ReadLine();
         }
         //Webページ取得
         public void DownloadString()
@@ -63,6 +71,27 @@ namespace Section04
             {
                 string html = sr.ReadToEnd();
                 Console.WriteLine(html);
+            }
+        }
+
+        //14.19
+        private static IEnumerable<string> GetWeatherReportFromYahoo(int cityCode)
+        {
+            using (var wc = new WebClient())
+            {
+                wc.Headers.Add("Content-type", "charset=UTF-8");
+                var uriString = string.Format(
+                    @"http://rss.weather.yahoo.co.jp/rss/days/{0}.xml", cityCode);
+                var url = new Uri(uriString);
+                var stream = wc.OpenRead(url);
+
+                XDocument xdoc = XDocument.Load(stream);
+                var nodes = xdoc.Root.Descendants("title");
+                foreach (var node in nodes)
+                {
+                    string s = Regex.Replace(node.Value, "【|】", "");
+                    yield return s;
+                }
             }
         }
     }
