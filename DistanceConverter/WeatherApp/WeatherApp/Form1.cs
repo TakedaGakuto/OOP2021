@@ -29,13 +29,13 @@ namespace WeatherApp
             
             Dictionary<String, int> PrefDic = new Dictionary<string, int>()
             {
-                { "栃木",40 },
-                { "茨城",41 },
-                { "群馬",42 },
-                { "埼玉",43 },
-                { "東京",44 },
-                { "千葉",45 },
-                { "神奈川",46 },
+                { "栃木",4000 },
+                { "茨城",4110 },
+                { "群馬",4210 },
+                { "埼玉",4310 },
+                { "東京",4410 },
+                { "千葉",4510 },
+                { "神奈川",4610 },
             };
             foreach (var n in PrefDic)
             {
@@ -44,18 +44,21 @@ namespace WeatherApp
                     code = n.Value;
                 }
             }
-            int num = code * 100+10;
+            int num = code;
             var result = GetWeatherReportFromYahoo(num);
-            if(result.ToString() != "Yahoo!天気・災害 - 該当する地点はありません。")
+
+            if(result.ToString().Contains("該当する地点はありません。"))
+            {
+                tbResult.Text = "地域はありません。";
+            }
+            else
             {
                 foreach (var s in result)
                 {
                     tbResult.Text += s;
                     tbResult.AppendText(Environment.NewLine);
                 }
-                num += 10;
-                GetWeatherReportFromYahoo(num);
-            }
+            } 
             
         }
         private static IEnumerable<string> GetWeatherReportFromYahoo(int cityCode)
