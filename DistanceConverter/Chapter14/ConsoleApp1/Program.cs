@@ -31,26 +31,25 @@ namespace Section04
             Console.Write("上記のコードから選択:");
             int num = int.Parse(Console.ReadLine());
             int code = 0;
-            switch (num)
+            Dictionary<String, int> PrefDic = new Dictionary<string, int>()
             {
-                case 1:
-                    code = 4210;
-                    break;
-                case 2:
-                    code = 4220;
-                    break;
-                case 3:
-                    code = 4110;
-                    break;
-                case 4:
-                    code = 4010;
-                    break;
-                case 5:
-                    Console.Write("地域コードを直接入力:");
-                    code = int.Parse(Console.ReadLine());
-                    break;
+                { "前橋",4210 },
+                { "みなかみ",4220 },
+                { "宇都宮",4110 },
+                { "水戸",4010 },
+            };
+            if (num <= 4)
+            {
+                foreach (var n in PrefDic)
+                {
+                    code = n.Value;
+                }
             }
-
+            else if(num == 5)
+            {
+                Console.Write("地域コード:");
+                code = int.Parse(Console.ReadLine());
+            }
             var result = GetWeatherReportFromYahoo(code);
             foreach(var s in result)
             {
