@@ -47,9 +47,11 @@ namespace RssReader
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
             var Item = (XElement)lbTitles.SelectedItem;
-            var link = Item.ToString();
+            var link = Item.NextNode.ToString();
             var url = Regex.Replace(link, "<link>|</link>", "");
             wbBrowser.Navigate(url);
+
+            //lbDiscription.Text = 
         }
     }
 }
