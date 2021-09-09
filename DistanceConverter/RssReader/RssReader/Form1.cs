@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -30,10 +31,12 @@ namespace RssReader
             using (var wc = new WebClient())
             {
                 wc.Headers.Add("Content-type", "charset=UTF-8");
-                var stream = wc.OpenRead(text);
+                
+                var stream = wc.OpenRead(tbUrl.Text);
+
                 XDocument xdoc = XDocument.Load(stream);
                 var nodes = xdoc.Root.Descendants("title");
-                foreach (var node in nodes)
+                foreach(var node in nodes)
                 {
                     lbTitles.Items.Add(node);
                 }
