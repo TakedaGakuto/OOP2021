@@ -28,6 +28,8 @@ namespace RssReader
 
         private void GetWebsite(string text)
         {
+            //リンク用リスト
+            List<string> links = new List<String>();
             using (var wc = new WebClient())
             {
                 wc.Headers.Add("Content-type", "charset=UTF-8");
@@ -38,7 +40,8 @@ namespace RssReader
                 var nodes = xdoc.Root.Descendants("title");
                 foreach(var node in nodes)
                 {
-                    lbTitles.Items.Add(node);
+                    links.Add(node.NextNode.ToString());
+                    lbTitles.Items.Add(node.Value);
                 }
             }
             
@@ -46,12 +49,8 @@ namespace RssReader
 
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var Item = (XElement)lbTitles.SelectedItem;
-            var link = Item.NextNode.ToString();
-            var url = Regex.Replace(link, "<link>|</link>", "");
-            wbBrowser.Navigate(url);
-
-            //lbDiscription.Text = 
+            //lbDiscription.Text = (Regex.Replace(Item.NextNode.NextNode.ToString(), "<pubDate>|</pubDate>", ""));
+            //lbDiscription.Text += Regex.Replace(Item.NextNode.NextNode.NextNode.ToString(),"<description>|</description>","");
         }
     }
 }
