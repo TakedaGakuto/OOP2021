@@ -17,13 +17,21 @@ namespace RssReader
         public Form2()
         {
             InitializeComponent();
-
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            
             wbBrowser.Navigate(Item.Element("link").Value);
+        }
+
+        private void btReturn_Click(object sender, EventArgs e)
+        {
+            wbBrowser.GoBack();
+        }
+
+        private void btGo_Click(object sender, EventArgs e)
+        {
+            wbBrowser.GoForward();
         }
     }
 }

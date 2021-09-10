@@ -55,9 +55,9 @@ namespace RssReader
             //②ブラウザ表示
             //webBrowser1.Navigate(Item.Element("link").Value);
             //③
-            lbDiscription.Text = Item.Element("description").Value.ToString();
+            lbDescription.Text = Item.Element("description").Value.ToString();
             //④-2
-            lbDiscription.Text += DateTime.Parse(Item.Element("pubDate").Value.ToString());
+            lbDescription.Text += DateTime.Parse(Item.Element("pubDate").Value.ToString());
 
             Form2.Item = Item;
         }
