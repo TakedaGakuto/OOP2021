@@ -16,9 +16,12 @@ namespace RssReader
 {
     public partial class Form1 : Form
     {
+        //リンク用リスト
+        List<XElement> Items = new List<XElement>();
         public Form1()
         {
             InitializeComponent();
+     
         }
 
         private void btRead_Click(object sender, EventArgs e)
@@ -28,8 +31,7 @@ namespace RssReader
 
         private void GetWebsite(string text)
         {
-            //リンク用リスト
-            List<string> links = new List<String>();
+            
             using (var wc = new WebClient())
             {
                 wc.Headers.Add("Content-type", "charset=UTF-8");
@@ -37,20 +39,34 @@ namespace RssReader
                 var stream = wc.OpenRead(tbUrl.Text);
 
                 XDocument xdoc = XDocument.Load(stream);
-                var nodes = xdoc.Root.Descendants("title");
+                var nodes = xdoc.Root.Descendants("item");
                 foreach(var node in nodes)
                 {
-                    links.Add(node.NextNode.ToString());
-                    lbTitles.Items.Add(node.Value);
+                    Items.Add(node);
+                    lbTitles.Items.Add(node.Element("title").Value);
                 }
             }
             
         }
 
-        private void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
+        public void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //lbDiscription.Text = (Regex.Replace(Item.NextNode.NextNode.ToString(), "<pubDate>|</pubDate>", ""));
-            //lbDiscription.Text += Regex.Replace(Item.NextNode.NextNode.NextNode.ToString(),"<description>|</description>","");
+            var Item = Items[lbTitles.SelectedIndex];
+            //②ブラウザ表示
+            //webBrowser1.Navigate(Item.Element("link").Value);
+            //③
+            lbDiscription.Text = Item.Element("description").Value.ToString();
+            //④-2
+            lbDiscription.Text += DateTime.Parse(Item.Element("pubDate").Value.ToString());
+
+            Form2.Item = Item;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //④-3
+            Form2 Form2 = new Form2();
+            Form2.Show();
         }
     }
 }

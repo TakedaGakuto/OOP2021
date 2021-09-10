@@ -34,6 +34,7 @@ namespace RssReader
             this.lbTitles = new System.Windows.Forms.ListBox();
             this.btRead = new System.Windows.Forms.Button();
             this.lbDiscription = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -67,7 +68,7 @@ namespace RssReader
             // btRead
             // 
             this.btRead.Font = new System.Drawing.Font("MS UI Gothic", 15F);
-            this.btRead.Location = new System.Drawing.Point(290, 55);
+            this.btRead.Location = new System.Drawing.Point(165, 57);
             this.btRead.Name = "btRead";
             this.btRead.Size = new System.Drawing.Size(147, 33);
             this.btRead.TabIndex = 4;
@@ -77,19 +78,29 @@ namespace RssReader
             // 
             // lbDiscription
             // 
-            this.lbDiscription.BackColor = System.Drawing.Color.Silver;
-            this.lbDiscription.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.lbDiscription.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbDiscription.Location = new System.Drawing.Point(153, 91);
+            this.lbDiscription.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lbDiscription.Location = new System.Drawing.Point(162, 93);
             this.lbDiscription.Name = "lbDiscription";
-            this.lbDiscription.Size = new System.Drawing.Size(401, 144);
+            this.lbDiscription.Size = new System.Drawing.Size(392, 142);
             this.lbDiscription.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 16F);
+            this.button1.Location = new System.Drawing.Point(319, 56);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(235, 34);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "ブラウザ表示";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lbDiscription);
             this.Controls.Add(this.btRead);
             this.Controls.Add(this.lbTitles);
@@ -109,6 +120,7 @@ namespace RssReader
         private System.Windows.Forms.ListBox lbTitles;
         private System.Windows.Forms.Button btRead;
         private System.Windows.Forms.Label lbDiscription;
+        private System.Windows.Forms.Button button1;
     }
 }
 
