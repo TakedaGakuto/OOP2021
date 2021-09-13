@@ -17,21 +17,52 @@ namespace RssReader
         public Form2()
         {
             InitializeComponent();
+            
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             wbBrowser.Navigate(Item.Element("link").Value);
+             btReturn.Enabled = false;
+             btGo.Enabled = false;
         }
 
         private void btReturn_Click(object sender, EventArgs e)
         {
             wbBrowser.GoBack();
+            if (wbBrowser.CanGoBack)
+            {
+                btReturn.Enabled = true;
+            }
+            else
+            {
+                btReturn.Enabled = false;
+            }
         }
 
         private void btGo_Click(object sender, EventArgs e)
         {
             wbBrowser.GoForward();
+            if (wbBrowser.CanGoForward)
+            {
+                btGo.Enabled = true;
+            }
+            else
+            {
+                btGo.Enabled = false;
+            }
+        }
+
+        private void wbBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (wbBrowser.CanGoBack)
+            {
+                btReturn.Enabled = true;
+            }
+            if (wbBrowser.CanGoForward)
+            {
+                btGo.Enabled = true;
+            }
         }
     }
 }
