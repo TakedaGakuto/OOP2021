@@ -35,9 +35,7 @@ namespace RssReader
                 btReturn.Enabled = true;
             }
             else
-            {
                 btReturn.Enabled = false;
-            }
         }
 
         private void btGo_Click(object sender, EventArgs e)
@@ -48,9 +46,7 @@ namespace RssReader
                 btGo.Enabled = true;
             }
             else
-            {
                 btGo.Enabled = false;
-            }
         }
 
         private void wbBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
