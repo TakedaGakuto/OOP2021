@@ -30,35 +30,17 @@ namespace RssReader
         private void btReturn_Click(object sender, EventArgs e)
         {
             wbBrowser.GoBack();
-            if (wbBrowser.CanGoBack)
-            {
-                btReturn.Enabled = true;
-            }
-            else
-                btReturn.Enabled = false;
         }
 
         private void btGo_Click(object sender, EventArgs e)
         {
             wbBrowser.GoForward();
-            if (wbBrowser.CanGoForward)
-            {
-                btGo.Enabled = true;
-            }
-            else
-                btGo.Enabled = false;
         }
 
         private void wbBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if (wbBrowser.CanGoBack)
-            {
-                btReturn.Enabled = true;
-            }
-            if (wbBrowser.CanGoForward)
-            {
-                btGo.Enabled = true;
-            }
+            btReturn.Enabled = wbBrowser.CanGoBack == true ? true : false;
+            btGo.Enabled = wbBrowser.CanGoForward == true ? true : false;
         }
     }
 }
