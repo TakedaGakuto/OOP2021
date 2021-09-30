@@ -12,14 +12,14 @@ namespace SendMail
         public string Host { get; set; }        //ホスト名
         public string PassWord { get; set; }    //パスワード
         public bool SSL{ get; set; }            //SSL有無
-
-        public string MailAddress { get; set; } //メールアドレス   
+        public string MailAddress { get; set; } //メールアドレス  
+        public string UserName { get; set; }    //ユーザー名
 
 
         //初期値設定
         public string sHost()
         {
-            return "smpt.gmail.com";
+            return "smtp.gmail.com";
         }
         public string sPort()
         {
@@ -33,6 +33,10 @@ namespace SendMail
         public string sMailAddress()
         {
             return "ojsinfosys01@gmail.com";
+        }
+        public bool bSSL()
+        {
+            return true;
         }
     }
 }

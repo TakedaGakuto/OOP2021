@@ -12,7 +12,7 @@ namespace SendMail
 {
     public partial class SettingForm : Form
     {
-        Settings Set = new Settings();
+        public Settings Set = new Settings();
         public SettingForm()
         {
             InitializeComponent();
@@ -24,25 +24,18 @@ namespace SendMail
             tbPort.Text = Set.sPort();
             tbUserName.Text = Set.sMailAddress();
             tbPassWord.Text = Set.sPassWord();
+            cbSSL.Checked = Set.bSSL();
             tbSender.Text = Set.sMailAddress();
         }
 
         private void btCancel_Click(object sender, EventArgs e)
         {
-            tbHost.Clear();
-            tbPort.Clear();
-            tbUserName.Clear();
-            tbPassWord.Clear();
-            tbSender.Clear();
+            this.Close();
         }
         //反映&ウィンド閉
         private void btOK_Click(object sender, EventArgs e)
         {
-            Set.Host = tbHost.Text;
-            Set.Port = int.Parse(tbPort.Text);
-            Set.PassWord = tbPassWord.Text;
-            Set.MailAddress = tbUserName.Text;
-            Set.SSL = cbSSL.Checked;
+            btAdaption_Click(sender,e);
             this.Close();
         }
         //反映
@@ -51,7 +44,7 @@ namespace SendMail
             Set.Host = tbHost.Text;
             Set.Port = int.Parse(tbPort.Text);
             Set.PassWord = tbPassWord.Text;
-            Set.MailAddress = tbUserName.Text;
+            Set.MailAddress = tbSender.Text;
             Set.SSL = cbSSL.Checked;
         }
     }

@@ -14,7 +14,7 @@ namespace SendMail
 {
     public partial class Form1 : Form
     {
-        Settings Set = new Settings();
+        SettingForm settingform = new SettingForm();
         public Form1()
         {
             InitializeComponent();
@@ -22,17 +22,18 @@ namespace SendMail
 
         private void btSetting_Click(object sender, EventArgs e)
         {
-            new SettingForm().ShowDialog();
+            settingform.ShowDialog();
         }
 
         private void btSend_Click(object sender, EventArgs e)
         {
+            //Settings Set = new Settings();
             try
             {
                 //メール送信インスタンス作成
                 MailMessage mailMessage = new MailMessage();
                 //差出
-                mailMessage.From = new MailAddress(Set.MailAddress);
+                mailMessage.From = new MailAddress(settingform.Set.MailAddress);
                 //To
                 mailMessage.To.Add(tbTo.Text);
                 //Cc
@@ -47,10 +48,10 @@ namespace SendMail
                 SmtpClient smtpClient = new SmtpClient();
                 //認証情報設定(ユーザー名、パスワード)
                 smtpClient.Credentials 
-                    = new NetworkCredential(Set.MailAddress,Set.PassWord);
-                smtpClient.Host = Set.Host;
-                smtpClient.Port = Set.Port;
-                smtpClient.EnableSsl = true;
+                    = new NetworkCredential(settingform.Set.MailAddress, settingform.Set.PassWord);
+                smtpClient.Host = settingform.Set.Host;
+                smtpClient.Port = settingform.Set.Port;
+                smtpClient.EnableSsl = settingform.Set.SSL;
                 smtpClient.Send(mailMessage);
 
                 MessageBox.Show("送信完了");
@@ -60,7 +61,5 @@ namespace SendMail
                 MessageBox.Show(ex.Message);
             }
         }
-
-        
     }
 }
