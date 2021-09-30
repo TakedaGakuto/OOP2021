@@ -12,7 +12,7 @@ namespace SendMail
 {
     public partial class SettingForm : Form
     {
-        public Settings Set = new Settings();
+        private Settings Set = Settings.getInstance();
         public SettingForm()
         {
             InitializeComponent();
