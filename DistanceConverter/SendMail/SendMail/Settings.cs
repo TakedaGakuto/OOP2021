@@ -17,6 +17,9 @@ namespace SendMail
         public string MailAddress { get; set; } //メールアドレス  
         public string UserName { get; set; }    //ユーザー名
 
+        //XMLファイル
+        public string XMLFile { get; set; }
+
         //コンストラクタ
         private Settings(){}
 
@@ -28,8 +31,6 @@ namespace SendMail
             }
             return instance;
         }
-
-
 
         //初期値設定
         public string sHost()

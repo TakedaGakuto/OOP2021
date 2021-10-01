@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,8 @@ namespace SendMail
             Set.PassWord = tbPassWord.Text;
             Set.MailAddress = tbSender.Text;
             Set.SSL = cbSSL.Checked;
+            Set.UserName = tbSender.Text;
+            //XML生成or上書き
         }
     }
 }
