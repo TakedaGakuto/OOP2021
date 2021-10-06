@@ -7,9 +7,11 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace SendMail
@@ -21,25 +23,20 @@ namespace SendMail
         public Form1()
         {
             InitializeComponent();
-
             //XML確認処理
-            var file = "mail.xml";
-            Set.XMLFile = XDocument.Load(file).ToString();
+            Set.File = "mial.xml";
+            FirstAction();
 
-            //var xdoc = XDocument.Load(file);
+        }
+
+        private void FirstAction()
+        {
             //XML取得成功(Settingsへ登録)
-            if (File.Exists(file))
+            if (File.Exists(Set.File))
             {
-
-                //settingsへの登録
-                //int
-                //Set.Port = ;
-                Set.Host = "";
-                Set.PassWord = "";
-                //true / false
-                //Set.SSL = ;
-                Set.MailAddress = "";
-                Set.UserName = " ";
+                //xmlから情報取得
+                
+                Set.reSelializer();
             }
             //XML取得失敗(SettingForm起動)
             else
