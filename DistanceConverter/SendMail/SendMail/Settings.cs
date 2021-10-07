@@ -34,7 +34,7 @@ namespace SendMail
 
             }
             return instance;
-        }あ
+        }
         //シリアル化
         public void Serializer()
         {
