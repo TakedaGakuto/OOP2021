@@ -72,6 +72,31 @@ namespace SendMail
             }
         }
 
+            using (var writer = XmlWriter.Create(this.File, xws))
+            {
+                var serializer = new DataContractSerializer(this.GetType());
+                serializer.WriteObject(writer,this);
+            }
+        }
+
+        //逆シリアライズ
+        public void reSelializer()
+        {
+            using (var reader = XmlReader.Create(this.File))
+            {
+                var serializer = new DataContractSerializer(typeof(Settings));
+                var mail = serializer.ReadObject(reader) as Settings;
+
+                //settingsへの登録
+                this.Port = mail.Port;
+                this.Host = mail.Host;
+                this.PassWord = mail.PassWord;
+                this.SSL = mail.SSL;
+                this.MailAddress = mail.MailAddress;
+                this.UserName = mail.UserName;
+            }
+        }
+
         //初期値設定
         public string sHost()
         {

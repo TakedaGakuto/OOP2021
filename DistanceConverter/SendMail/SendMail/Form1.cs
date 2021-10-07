@@ -24,7 +24,7 @@ namespace SendMail
         {
             InitializeComponent();
             //XML確認処理
-            Set.File = "mial.xml";
+            Set.File = "mail.xml";
             FirstAction();
 
         }
@@ -35,7 +35,19 @@ namespace SendMail
             if (File.Exists(Set.File))
             {
                 //xmlから情報取得
-                
+                /*using (var reader = XmlReader.Create(Set.File))
+                {
+                    var serializer = new DataContractSerializer(typeof(Settings));
+                    var mail = serializer.ReadObject(reader) as Settings;
+                    
+                    //settingsへの登録
+                    Set.Port = mail.Port;
+                    Set.Host = mail.Host;
+                    Set.PassWord = mail.PassWord;
+                    Set.SSL = mail.SSL;
+                    Set.MailAddress = mail.MailAddress;
+                    Set.UserName = mail.UserName;
+                }*/
                 Set.reSelializer();
             }
             //XML取得失敗(SettingForm起動)
