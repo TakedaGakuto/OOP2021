@@ -6,35 +6,50 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
-
+using System.IO;
 namespace SendMail
-{ 
+{
     public class Settings
     {
         private static Settings instance = null;
         public string Host { get; set; }        //ホスト名
         public int Port { get; set; }           //ポート番号
         public string PassWord { get; set; }    //パスワード
-        public bool SSL{ get; set; }            //SSL有無
+        public bool SSL { get; set; }            //SSL有無
         public string MailAddress { get; set; } //メールアドレス
         public string UserName { get; set; }    //ユーザー名
 
         //XMLファイル
-        public string File { get; set; }
+        public string FileName { get; set; } = "mail.xml";
+
+        bool ans = true;
 
         //コンストラクタ
-        private Settings(){}
+        private Settings() { }
 
         public static Settings getInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new Settings();
-
-
             }
             return instance;
         }
+
+        public bool FileCheck()
+        {
+            if (File.Exists(this.FileName))
+            {
+                reSelializer();
+                if (ans != false)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
         //シリアル化
         public void Serializer()
         {
@@ -44,59 +59,39 @@ namespace SendMail
                 Indent = true,
                 IndentChars = "",
             };
-
-            using (var writer = XmlWriter.Create(this.File, xws))
+            using (var writer = XmlWriter.Create(this.FileName, xws))
             {
                 var serializer = new DataContractSerializer(this.GetType());
-                serializer.WriteObject(writer,this);
+                serializer.WriteObject(writer, this);
             }
         }
 
         //逆シリアライズ
         public void reSelializer()
         {
-            using (var reader = XmlReader.Create(this.File))
+            using (var reader = XmlReader.Create(this.FileName))
             {
-                var serializer = new DataContractSerializer(typeof(Settings));
-                var mail = serializer.ReadObject(reader) as Settings;
+                try
+                {
+                    var serializer = new DataContractSerializer(typeof(Settings));
+                    var mail = serializer.ReadObject(reader) as Settings;
 
-                instance = mail;
+                    instance = mail;
 
-                //settingsへの登録
-                this.Port = mail.Port;
-                this.Host = mail.Host;
-                this.PassWord = mail.PassWord;
-                this.SSL = mail.SSL;
-                this.MailAddress = mail.MailAddress;
-                this.UserName = mail.UserName;
+                    //settingsへの登録
+                    this.Port = mail.Port;
+                    this.Host = mail.Host;
+                    this.PassWord = mail.PassWord;
+                    this.SSL = mail.SSL;
+                    this.MailAddress = mail.MailAddress;
+                    this.UserName = mail.UserName;
+                }
+                catch (Exception e)
+                {
+                    ans = false;
+                }
             }
         }
-
-            using (var writer = XmlWriter.Create(this.File, xws))
-            {
-                var serializer = new DataContractSerializer(this.GetType());
-                serializer.WriteObject(writer,this);
-            }
-        }
-
-        //逆シリアライズ
-        public void reSelializer()
-        {
-            using (var reader = XmlReader.Create(this.File))
-            {
-                var serializer = new DataContractSerializer(typeof(Settings));
-                var mail = serializer.ReadObject(reader) as Settings;
-
-                //settingsへの登録
-                this.Port = mail.Port;
-                this.Host = mail.Host;
-                this.PassWord = mail.PassWord;
-                this.SSL = mail.SSL;
-                this.MailAddress = mail.MailAddress;
-                this.UserName = mail.UserName;
-            }
-        }
-
         //初期値設定
         public string sHost()
         {
@@ -119,7 +114,5 @@ namespace SendMail
         {
             return true;
         }
-
-
     }
 }

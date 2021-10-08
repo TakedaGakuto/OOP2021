@@ -59,21 +59,16 @@ namespace SendMail
             Set.SSL = cbSSL.Checked;
             Set.UserName = tbSender.Text;
 
-            //シリアル化
-            /*var xws = new XmlWriterSettings
-            {
-                Encoding = new System.Text.UTF8Encoding(false),
-                Indent = true,
-                IndentChars = "",
-            };
-
-            using (var writer = XmlWriter.Create(Set.File, xws))
-            {
-                var serializer = new DataContractSerializer(Set.GetType());
-                serializer.WriteObject(writer, Set);
-            }*/
             Set.Serializer();
-            
+        }
+        private void SettingForm_Load(object sender, EventArgs e)
+        {
+            tbHost.Text = Set.Host;
+            tbPort.Text = Set.Port.ToString();
+            tbUserName.Text = Set.UserName;
+            tbPassWord.Text = Set.PassWord;
+            cbSSL.Checked = Set.SSL;
+            tbSender.Text = Set.UserName;
         }
     }
 }

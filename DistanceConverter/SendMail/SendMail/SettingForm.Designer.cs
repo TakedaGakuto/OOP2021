@@ -237,6 +237,7 @@ namespace SendMail
             this.Controls.Add(this.groupBox2);
             this.Name = "SettingForm";
             this.Text = "SettingForm";
+            this.Load += new System.EventHandler(this.SettingForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
