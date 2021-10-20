@@ -128,7 +128,7 @@ namespace SampleEntityFramework
 
         private static void AuthorAdd()
         {
-            Console.Write("誕生日:");
+            Console.Write("生年月日:");
             var birthday = Console.ReadLine();
             Console.Write("性別(M・F):");
             var gender = Console.ReadLine();
