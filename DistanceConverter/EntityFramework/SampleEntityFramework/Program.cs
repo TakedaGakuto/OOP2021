@@ -53,65 +53,131 @@ namespace SampleEntityFramework
 
         private static void Execise1()
         {
-            #region ソース入力
-            /*using (var db = new BooksDbContext())
+            Console.WriteLine("著者を追加しますか?(No:0 Yes:1)");
+            var ans1 = Console.ReadLine();
+            if(int.Parse(ans1) == 1)
             {
-                var author1 = new Author
-                {
-                    Birthday = new DateTime(1888, 12, 26),
-                    Gender = "M",
-                    Name = "菊池寛"
-                };
-                db.Authors.Add(author1);
-
-                var author2 = new Author
-                {
-                    Birthday = new DateTime(1899, 6, 14),
-                    Gender = "M",
-                    Name = "川端康成"
-                };
-                db.Authors.Add(author2);
-                db.SaveChanges();
+                AuthorAdd();
             }
+            Console.WriteLine("本を追加しますか?(No:0 Yes:1)");
+            var ans2 = Console.ReadLine();
+            if(int.Parse(ans2) == 1)
+            {
+                BookAdd();
+            }
+                #region ソース入力
+                /*using (var db = new BooksDbContext())
+                {
+                    var author1 = new Author
+                    {
+                        Birthday = new DateTime(1888, 12, 26),
+                        Gender = "M",
+                        Name = "菊池寛"
+                    };
+                    db.Authors.Add(author1);
+
+                    var author2 = new Author
+                    {
+                        Birthday = new DateTime(1899, 6, 14),
+                        Gender = "M",
+                        Name = "川端康成"
+                    };
+                    db.Authors.Add(author2);
+                    db.SaveChanges();
+                }
+                using (var db = new BooksDbContext())
+                {
+                    var author1 = db.Authors.Single(a => a.Name == "夏目漱石");
+                    var book1 = new Book
+                    {
+                        Title = "こころ",
+                        PublishedYear = 1991,
+                        Author = author1,
+                    };
+                    db.Books.Add(book1);
+
+                    var author2 = db.Authors.Single(a => a.Name == "川端康成");
+                    var book2 = new Book
+                    {
+                        Title = "伊豆の踊子",
+                        PublishedYear = 2003,
+                        Author = author2,
+                    };
+                    db.Books.Add(book2);
+
+                    var author3 = db.Authors.Single(a => a.Name == "菊池寛");
+                    var book3 = new Book
+                    {
+                        Title = "真珠夫人",
+                        PublishedYear = 2002,
+                        Author = author3,
+                    };
+                    db.Books.Add(book3);
+
+                    var author4 = db.Authors.Single(a => a.Name == "宮沢賢治");
+                    var book4 = new Book
+                    {
+                        Title = "注文の多い料理店",
+                        PublishedYear = 2000,
+                        Author = author4,
+                    };
+                    db.Books.Add(book4);
+                    db.SaveChanges();*/
+                #endregion
+            }
+
+        private static void AuthorAdd()
+        {
+            Console.Write("誕生日:");
+            var birthday = Console.ReadLine();
+            Console.Write("性別(M・F):");
+            var gender = Console.ReadLine();
+            Console.Write("名前:");
+            var name = Console.ReadLine();
             using (var db = new BooksDbContext())
             {
-                var author1 = db.Authors.Single(a => a.Name == "夏目漱石");
-                var book1 = new Book
+                var author = new Author
                 {
-                    Title = "こころ",
-                    PublishedYear = 1991,
-                    Author = author1,
+                    Birthday = DateTime.Parse(birthday),
+                    Gender = gender,
+                    Name = name
                 };
-                db.Books.Add(book1);
-
-                var author2 = db.Authors.Single(a => a.Name == "川端康成");
-                var book2 = new Book
+                db.Authors.Add(author);
+                db.SaveChanges();
+                Console.WriteLine("著者を追加しますか?(No:0 Yes:1)");
+                var ans1 = Console.ReadLine();
+                if (int.Parse(ans1) == 1)
                 {
-                    Title = "伊豆の踊子",
-                    PublishedYear = 2003,
-                    Author = author2,
-                };
-                db.Books.Add(book2);
-
-                var author3 = db.Authors.Single(a => a.Name == "菊池寛");
-                var book3 = new Book
+                    AuthorAdd();
+                }
+            }
+        }
+        private static void BookAdd()
+        {
+            Console.Write("著者名:");
+            var name = Console.ReadLine();
+            Console.Write("タイトル:");
+            var title = Console.ReadLine();
+            Console.Write("公開年:");
+            var publishedyear = Console.ReadLine();
+            using (var db = new BooksDbContext())
+            {
+                var author = db.Authors.Single(a => a.Name == name);
+                var book = new Book
                 {
-                    Title = "真珠夫人",
-                    PublishedYear = 2002,
-                    Author = author3,
+                    Title = title,
+                    PublishedYear = int.Parse(publishedyear),
+                    Author = author,
                 };
-                db.Books.Add(book3);
-
-                var author4 = db.Authors.Single(a => a.Name == "宮沢賢治");
-                var book4 = new Book
+                db.Books.Add(book);
+                Console.WriteLine("本を追加しますか?(No:0 Yes:1)");
+                var ans2 = Console.ReadLine();
+                db.SaveChanges();
+                if (int.Parse(ans2) == 1)
                 {
-                    Title = "注文の多い料理店",
-                    PublishedYear = 2000,
-                    Author = author4,
-                };
-                db.Books.Add(book4);
-                db.SaveChanges();*/
-            #endregion
+                    BookAdd();
+                }
+            }
         }
 
         private static void Execise2()
