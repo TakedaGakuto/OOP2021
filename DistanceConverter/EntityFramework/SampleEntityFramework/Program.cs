@@ -221,7 +221,6 @@ namespace SampleEntityFramework
             using (var db = new BooksDbContext())
             {
                 var authors = db.Authors.OrderByDescending(x => x.Birthday);
-                var books = db.Books.OrderBy(x => x.Author.Id);
                 foreach (var author in authors)
                 {
                     Console.WriteLine($"{author.Name}({author.Birthday.ToString("yyyy/MM/dd")})");
