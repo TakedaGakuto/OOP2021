@@ -86,6 +86,7 @@ namespace CarReportSystem {
             pbPicture.Image = selectedCar.Picture;
             selectmaker(selectedCar.Maker);
         }
+
         private void selectmaker(CarReport.MakerGroup maker) {
             switch (maker) {
                 case CarReport.MakerGroup.トヨタ:
