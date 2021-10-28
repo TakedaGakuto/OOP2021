@@ -119,14 +119,19 @@ namespace CarReportSystem {
                                                                  tbReport.Text, pbPicture.Image);*/
             //dgvRegistData.Refresh(); //コントロールの強制描画
         }
-        private void btArticleSave_Click(object sender, EventArgs e) {
+        private void btUpdate_Click(object sender, EventArgs e) {
 
+            if (carReportDataGridView.CurrentRow == null) return;
+            
             carReportDataGridView.CurrentRow.Cells[1].Value = dtpDate.Value;      //日付
             carReportDataGridView.CurrentRow.Cells[2].Value = cbEditorName.Text; //記録者
             carReportDataGridView.CurrentRow.Cells[3].Value = selectedGroup();     //メーカー名
             carReportDataGridView.CurrentRow.Cells[4].Value = cbCarName.Text;    //車名
             carReportDataGridView.CurrentRow.Cells[5].Value = tbReport.Text;     //レポート
 
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202108DataSet);
 #if false
             if(sfdFileSave.ShowDialog() == DialogResult.OK) {
                 try{	        
@@ -143,7 +148,7 @@ namespace CarReportSystem {
 #endif
         }
 
-        private void btArticleOpen_Click(object sender, EventArgs e) {
+        private void btConnect_Click(object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202108DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableAdapter.Fill(this.infosys202108DataSet.CarReport);
 #if false
