@@ -51,9 +51,6 @@ namespace CarReportSystem {
             this.pbPicture = new System.Windows.Forms.PictureBox();
             this.btPictureOpen = new System.Windows.Forms.Button();
             this.btPictureDelete = new System.Windows.Forms.Button();
-            this.btArticleAdd = new System.Windows.Forms.Button();
-            this.btupdata = new System.Windows.Forms.Button();
-            this.btArticleDelete = new System.Windows.Forms.Button();
             this.btConnect = new System.Windows.Forms.Button();
             this.btUpdate = new System.Windows.Forms.Button();
             this.btExit = new System.Windows.Forms.Button();
@@ -307,7 +304,7 @@ namespace CarReportSystem {
             this.pbPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbPicture.Location = new System.Drawing.Point(485, 77);
             this.pbPicture.Name = "pbPicture";
-            this.pbPicture.Size = new System.Drawing.Size(253, 229);
+            this.pbPicture.Size = new System.Drawing.Size(253, 274);
             this.pbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPicture.TabIndex = 9;
             this.pbPicture.TabStop = false;
@@ -333,40 +330,6 @@ namespace CarReportSystem {
             this.btPictureDelete.Text = "削除";
             this.btPictureDelete.UseVisualStyleBackColor = true;
             this.btPictureDelete.Click += new System.EventHandler(this.btPictureDelete_Click);
-            // 
-            // btArticleAdd
-            // 
-            this.btArticleAdd.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.btArticleAdd.Location = new System.Drawing.Point(482, 335);
-            this.btArticleAdd.Name = "btArticleAdd";
-            this.btArticleAdd.Size = new System.Drawing.Size(75, 36);
-            this.btArticleAdd.TabIndex = 10;
-            this.btArticleAdd.Text = "追加";
-            this.btArticleAdd.UseVisualStyleBackColor = true;
-            this.btArticleAdd.Click += new System.EventHandler(this.btArticleAdd_Click);
-            // 
-            // btupdata
-            // 
-            this.btupdata.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.btupdata.Location = new System.Drawing.Point(563, 335);
-            this.btupdata.Name = "btupdata";
-            this.btupdata.Size = new System.Drawing.Size(75, 36);
-            this.btupdata.TabIndex = 10;
-            this.btupdata.Text = "修正";
-            this.btupdata.UseVisualStyleBackColor = true;
-            this.btupdata.Click += new System.EventHandler(this.btArticleFix_Click);
-            // 
-            // btArticleDelete
-            // 
-            this.btArticleDelete.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btArticleDelete.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.btArticleDelete.Location = new System.Drawing.Point(644, 335);
-            this.btArticleDelete.Name = "btArticleDelete";
-            this.btArticleDelete.Size = new System.Drawing.Size(75, 36);
-            this.btArticleDelete.TabIndex = 10;
-            this.btArticleDelete.Text = "削除";
-            this.btArticleDelete.UseVisualStyleBackColor = true;
-            this.btArticleDelete.Click += new System.EventHandler(this.btArticleDelete_Click);
             // 
             // btConnect
             // 
@@ -435,11 +398,11 @@ namespace CarReportSystem {
             this.carReportDataGridView.Location = new System.Drawing.Point(97, 377);
             this.carReportDataGridView.MultiSelect = false;
             this.carReportDataGridView.Name = "carReportDataGridView";
-            this.carReportDataGridView.ReadOnly = true;
             this.carReportDataGridView.RowTemplate.Height = 21;
             this.carReportDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.carReportDataGridView.Size = new System.Drawing.Size(641, 252);
             this.carReportDataGridView.TabIndex = 23;
+            this.carReportDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.carReportDataGridView_DataError);
             this.carReportDataGridView.SelectionChanged += new System.EventHandler(this.carReportDataGridView_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn1
@@ -447,7 +410,6 @@ namespace CarReportSystem {
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
             this.dataGridViewTextBoxColumn1.HeaderText = "Id";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -522,6 +484,7 @@ namespace CarReportSystem {
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "新規追加";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -613,10 +576,7 @@ namespace CarReportSystem {
             this.Controls.Add(this.btUpdate);
             this.Controls.Add(this.btConnect);
             this.Controls.Add(this.btPictureOpen);
-            this.Controls.Add(this.btArticleDelete);
-            this.Controls.Add(this.btupdata);
             this.Controls.Add(this.btPictureDelete);
-            this.Controls.Add(this.btArticleAdd);
             this.Controls.Add(this.pbPicture);
             this.Controls.Add(this.tbReport);
             this.Controls.Add(this.gbMakers);
@@ -635,7 +595,6 @@ namespace CarReportSystem {
             this.MaximizeBox = false;
             this.Name = "fmMain";
             this.Text = "試乗レポート管理システム";
-            this.Load += new System.EventHandler(this.fmMain_Load);
             this.gbMakers.ResumeLayout(false);
             this.gbMakers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carReportBindingSource)).EndInit();
@@ -675,15 +634,12 @@ namespace CarReportSystem {
         private System.Windows.Forms.PictureBox pbPicture;
         private System.Windows.Forms.Button btPictureOpen;
         private System.Windows.Forms.Button btPictureDelete;
-        private System.Windows.Forms.Button btArticleAdd;
-        private System.Windows.Forms.Button btupdata;
         private System.Windows.Forms.Button btConnect;
         private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.Button btExit;
         private System.Windows.Forms.OpenFileDialog ofdPictureOpen;
         private System.Windows.Forms.SaveFileDialog sfdFileSave;
         private System.Windows.Forms.OpenFileDialog ofdFileOpen;
-        public System.Windows.Forms.Button btArticleDelete;
         private infosys202108DataSet infosys202108DataSet;
         private System.Windows.Forms.BindingSource carReportBindingSource;
         private infosys202108DataSetTableAdapters.CarReportTableAdapter carReportTableAdapter;
