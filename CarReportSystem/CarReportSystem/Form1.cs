@@ -141,28 +141,12 @@ namespace CarReportSystem
             carReportDataGridView.CurrentRow.Cells[5].Value = tbReport.Text;        //レポート
             carReportDataGridView.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);      //画像
 
-
             this.Validate();
             this.carReportBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202108DataSet);
             
             setCbName(carReportDataGridView.CurrentRow.Cells[2].Value.ToString());
             setCbCarName(carReportDataGridView.CurrentRow.Cells[4].Value.ToString());
-
-#if false
-            if(sfdFileSave.ShowDialog() == DialogResult.OK) {
-                try{	        
-		            //シリアル化
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(sfdFileSave.FileName,FileMode.Create)) {
-                        bf.Serialize(fs,listCarReport);
-                    }
-	            }
-	            catch (Exception ex){
-                    MessageBox.Show(ex.Message+"\r\nこの形式のファイルは保存できません。");
-	            }
-            }
-#endif
         }
 
         private void btConnect_Click(object sender, EventArgs e)
@@ -174,32 +158,7 @@ namespace CarReportSystem
                 setCbName(carReportDataGridView.Rows[i-1].Cells[2].Value.ToString());
                 setCbCarName(carReportDataGridView.Rows[i-1].Cells[4].Value.ToString());
             }
-#if false
-            if(ofdFileOpen.ShowDialog() == DialogResult.OK) {
-                try { 
-                //逆シリアル化
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(ofdFileOpen.FileName,FileMode.Open,FileAccess.Read)){
-                        listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
-                        dgvRegistData.DataSource = null;
-                        dgvRegistData.DataSource = listCarReport;
-                    }
-                }
-                catch (Exception ex){
-                    MessageBox.Show(ex.Message+"\r\nこの形式のファイルを開くことはできません。");
-                    //MessageBox.Show("この形式のファイルを開くことはできません。");
-                }
-                //コンボボックスに登録
-                foreach(var items in listCarReport) {
-                    setCbCarName(items.CarName);
-                    setCbName(items.EditorName);
-                }
-                /*for(int i = 0; i < dgvRegistData.RowCount; i++) {
-                    setCbName(dgvRegistData.Rows[1].Cells[1].Value.ToString());
-                    setCbCarName(dgvRegistData.Rows[1].Cells[3].Value.ToString());
-                }*/
-            }
-#endif
+
         }
 
         private void carReportDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -207,6 +166,7 @@ namespace CarReportSystem
             if (carReportDataGridView.Rows == null) return;
             try
             {
+                ssLabel.Text = "";
                 dtpDate.Value = (DateTime)carReportDataGridView.CurrentRow.Cells[1].Value;      //日付
                 cbEditorName.Text = carReportDataGridView.CurrentRow.Cells[2].Value.ToString(); //記入者
                 selectmaker((CarReport.MakerGroup)Enum.Parse(typeof(CarReport.MakerGroup),carReportDataGridView.CurrentRow.Cells[3].Value.ToString()));//メーカー名(文字→列挙)
@@ -214,17 +174,27 @@ namespace CarReportSystem
                 tbReport.Text = carReportDataGridView.CurrentRow.Cells[5].Value.ToString();     //レポート
                 pbPicture.Image = ByteArrayToImage((byte[])carReportDataGridView.CurrentRow.Cells[6].Value);     //画像
             }
-            catch (Exception)
+            catch (InvalidCastException)
             {
                 pbPicture.Image = null;
             }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+                ssLabel.Text = ex.Message;
+            }
+            
         }
 
         // バイト配列をImageオブジェクトに変換
         public static Image ByteArrayToImage(byte[] b)
         {
-            ImageConverter imgconv = new ImageConverter();
-            Image img = (Image)imgconv.ConvertFrom(b);
+            Image img = null;
+            if(b.Length > 0)
+            {
+                ImageConverter imgconv = new ImageConverter();
+                img = (Image)imgconv.ConvertFrom(b);
+            }
             return img;
         }
         // Imageオブジェクトをバイト配列に変換
@@ -238,25 +208,30 @@ namespace CarReportSystem
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
 
-            if (carReportDataGridView.Rows == null) return;
-            try
-            {
-                dtpDate.Value = (DateTime)carReportDataGridView.CurrentRow.Cells[1].Value;      //日付
-                cbEditorName.Text = carReportDataGridView.CurrentRow.Cells[2].Value.ToString(); //記入者
-                selectmaker((CarReport.MakerGroup)Enum.Parse(typeof(CarReport.MakerGroup), carReportDataGridView.CurrentRow.Cells[3].Value.ToString()));//メーカー名(文字→列挙)
-                cbCarName.Text = carReportDataGridView.CurrentRow.Cells[4].Value.ToString();    //車名
-                tbReport.Text = carReportDataGridView.CurrentRow.Cells[5].Value.ToString();     //レポート
-                pbPicture.Image = ByteArrayToImage((byte[])carReportDataGridView.CurrentRow.Cells[6].Value);     //画像
-            }
-            catch (Exception)
-            {
-                pbPicture.Image = null;
-            }
+            dtpDate.Value = DateTime.Now;
+            cbEditorName.Text = "";
+            cbCarName.Text = "";
+            tbReport.Text = "";
+            pbPicture.Image = null;
         }
 
         private void carReportDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
 
+        }
+
+        private void fmMain_Load(object sender, EventArgs e)
+        {
+            carReportDataGridView.Columns[0].Visible = false;
+            carReportDataGridView.Columns[1].HeaderText = "日付";
+            carReportDataGridView.Columns[2].HeaderText = "記録者";
+            carReportDataGridView.Columns[3].HeaderText = "メーカー";
+            carReportDataGridView.Columns[4].HeaderText = "車名";
+            carReportDataGridView.Columns[5].HeaderText = "レポート";
+            //carReportDataGridView.Columns[6].HeaderText = "写真";
+            carReportDataGridView.Columns[6].Visible = false;
+
+            ssLabel.Text = "";
         }
     }
 }
