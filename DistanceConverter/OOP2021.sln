@@ -135,6 +135,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{4EC1ABB8-B7C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleGridApp", "WPF\SampleGridApp\SampleGridApp.csproj", "{609EC27F-6093-489A-AC73-39E510EC7B54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUnitConverter", "WPF\SampleUnitComveter\SampleUnitConverter.csproj", "{E3420783-51F1-47F8-BE16-1A8BFCBA9120}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -305,6 +307,10 @@ Global
 		{609EC27F-6093-489A-AC73-39E510EC7B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{609EC27F-6093-489A-AC73-39E510EC7B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{609EC27F-6093-489A-AC73-39E510EC7B54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3420783-51F1-47F8-BE16-1A8BFCBA9120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3420783-51F1-47F8-BE16-1A8BFCBA9120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3420783-51F1-47F8-BE16-1A8BFCBA9120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3420783-51F1-47F8-BE16-1A8BFCBA9120}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -355,6 +361,7 @@ Global
 		{782DBDE2-B63C-4477-8BDD-EDC67C26277B} = {DCE5768F-EDD5-4506-924E-25A11E4177B4}
 		{387D1D3E-19DE-43F7-AD67-C67C326AB954} = {4EC1ABB8-B7C7-4B7E-9E81-AB09435B1A37}
 		{609EC27F-6093-489A-AC73-39E510EC7B54} = {4EC1ABB8-B7C7-4B7E-9E81-AB09435B1A37}
+		{E3420783-51F1-47F8-BE16-1A8BFCBA9120} = {4EC1ABB8-B7C7-4B7E-9E81-AB09435B1A37}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93E0FB3F-678A-4F03-8459-E080E5ECF736}
