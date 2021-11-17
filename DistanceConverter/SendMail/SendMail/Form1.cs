@@ -43,12 +43,11 @@ namespace SendMail
         {
             try
             {
-                btSend.Enabled = false;
                 //メール送信インスタンス作成
                 MailMessage mailMessage = new MailMessage();
                 //差出
                 mailMessage.From = new MailAddress(Set.MailAddress);
-                if (tbTo.Text != "" && tbMessage.Text != "")
+                if (tbTo.Text != "" && string.IsNullOrWhiteSpace(tbMessage.Text)!=true)
                 {
                 //To
                 mailMessage.To.Add(tbTo.Text);
@@ -64,7 +63,7 @@ namespace SendMail
                 }
                 //タイトル
                 mailMessage.Subject = tbTitle.Text;
-                //本文
+                    //本文
                 mailMessage.Body = tbMessage.Text;
                 //SMTPを使用してメール送信
                 SmtpClient smtpClient = new SmtpClient();
@@ -78,14 +77,14 @@ namespace SendMail
                 string token = "SendMail";
                 smtpClient.SendCompleted += SmtpClient_SendCompleted;
                 smtpClient.SendAsync(mailMessage, token);
+                btSend.Enabled = false;
                 }
                 else
                 MessageBox.Show("メールの内容に不備があります");
-                btSend.Enabled = true;
             }
-            catch(Exception e3)
+            catch(Exception ex)
             {
-                MessageBox.Show(e3.Message);
+                MessageBox.Show(ex.Message);
             }
         }
         private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e)
@@ -93,9 +92,11 @@ namespace SendMail
             if(e.Error != null)
             {
                 MessageBox.Show(e.Error.Message);
+                settingform.ShowDialog();
             }
             else
             {
+                
                 MessageBox.Show("送信完了");
                 btSend.Enabled = true;
                 TextReset();
@@ -109,7 +110,6 @@ namespace SendMail
             tbBcc.Clear();
             tbTitle.Clear();
             tbMessage.Clear();
-            btSend.Enabled = true;
         }
         private void 終了FToolStripMenuItem_Click(object sender, EventArgs e)
         {
