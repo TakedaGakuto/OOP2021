@@ -28,6 +28,8 @@ namespace NumberGame
             InitializeComponent();
             Random random = new Random();
             num = random.Next(1, 25);
+            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -48,6 +50,7 @@ namespace NumberGame
             {
                 label.Content = "もう少し低い値です。";
             }
+            
         }
     }
 }
