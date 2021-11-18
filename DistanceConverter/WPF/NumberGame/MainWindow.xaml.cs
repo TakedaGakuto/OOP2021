@@ -57,6 +57,7 @@ namespace NumberGame
                 label.Content = "もう少し低い値です。";
             }
         }
+
         /*private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //行
