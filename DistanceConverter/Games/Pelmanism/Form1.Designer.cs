@@ -58,21 +58,23 @@ namespace Pelmanism
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(195, 256);
+            this.buttonStart.Location = new System.Drawing.Point(196, 276);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 2;
             this.buttonStart.Text = "スタート";
             this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // timer1
             // 
             this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormGame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(459, 281);
+            this.ClientSize = new System.Drawing.Size(459, 311);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.labelGuidance);
             this.Controls.Add(this.labelSec);

@@ -22,8 +22,10 @@ namespace Pelmanism
             InitializeComponent();
         }
 
-        //カードの生成
-        //cards(仮引数):カード配列への参照 
+        /// <summary>
+        /// カードの生成
+        /// </summary>
+        /// <param name="cards">カード配列への参照</param>
         private void CreateCards(ref Card[] cards)
         {
             string[] picture =
@@ -55,12 +57,12 @@ namespace Pelmanism
             for (int i = 0; i < playingCards.Length; i++)
             {
                 //カード(ボタン)プロパティ設定
-                playingCards[i].Name = "card" + 1;
+                playingCards[i].Name = "card" + i;
                 int sizeW = playingCards[1].Size.Width;
                 int sizeH = playingCards[1].Size.Height;
                 playingCards[i].Location = new Point(offsetX + i % 8 * sizeW, offsetY + i / 8 * sizeH);
 
-                playingCards[i].Click += CarsButtons_Click;
+                playingCards[i].Click += CardButtons_Click;
             }
 
             Controls.AddRange(playingCards);
@@ -69,9 +71,127 @@ namespace Pelmanism
 
         }
 
-        private void CarsButtons_Click(object sender, EventArgs e)
+        private void CardButtons_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //何枚目か
+            if(player.OpenCounter == 0)
+            {
+                //前回不一致なら伏せる
+                int b1 = player.BeforeOpenCardIndex1;
+                int b2 = player.BeforeOpenCardIndex2;
+                if(b1 != -1 && b2 != -1 && MatchCard(playingCards,b1,b2))
+                {
+                    playingCards[b1].Close();
+                    playingCards[b2].Close();
+                }
+
+                //クリックしたボタンの名前から添え字取得
+                int n1 = int.Parse(((Button)sender).Name.Substring(4));
+
+                //１枚目取得
+                playingCards[n1].Open();
+                player.NowOpenCardIndex1 = n1;
+
+                labelGuidance.Text = " もう一枚目めくってください。";
+                
+            }
+            else if(player.OpenCounter == 1)
+            {
+                int n2 = int.Parse(((Button)sender).Name.Substring(4));
+                //2枚目
+                playingCards[n2].Open();
+                player.NowOpenCardIndex2 = n2;
+
+                //一枚目と二枚目比較
+                if (MatchCard(playingCards, player.NowOpenCardIndex1, player.NowOpenCardIndex2))
+                {
+                    labelGuidance.Text = "カードは不一致です。次のカードをめくってください。";
+                }
+                else{
+                    labelGuidance.Text = "カードは一致しました。次のカードをめくってください";
+                }
+                //リセット
+                player.Reset();
+
+                //全カードをめくったか
+                if (AllOpenCard(playingCards))
+                {
+                    labelGuidance.Text = "全部のカードが一致しました。お疲れ様でした。";
+                    timer1.Stop();
+                    buttonStart.Enabled = true;
+                }
+            }
+        }
+        /// <summary>
+        /// カードが全部開いたか
+        /// </summary>
+        /// <param name="playingCards">カードの配列</param>
+        /// <returns>false:一枚以上裏がある</returns>
+        private bool AllOpenCard(Card[] playingCards)
+        {
+            foreach(var card in playingCards)
+            {
+                if (!card.State)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// カードの一致チェック
+        /// </summary>
+        /// <param name="playingCards">カードの配列</param>
+        /// <param name="nowOpenCardIndex1">一枚目の添え字</param>
+        /// <param name="nowOpenCardIndex2">二枚目の添え字</param>
+        /// <returns>true:一致 false:不一致</returns>
+        private bool MatchCard(Card[] Cards, int index1, int index2)
+        {
+            if (index1 < 0 || index1 >= Cards.Length || index2 < 0 || index2 >= Cards.Length)
+                return true;
+
+            if (Cards[index1].Picture.Equals(Cards[index2].Picture))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            //シャッフル
+            ShuffleCard(playingCards);
+
+            //全カードを伏せる
+            foreach (var card in playingCards)
+            {
+                card.Close();
+            }
+            //スタートボタンマスク
+            buttonStart.Enabled = false;
+            gameSec = 0;
+            timer1.Start();
+
+            labelGuidance.Text = "クリックしてカードをめくってください。";
+        }
+
+        /// <summary>
+        /// カードを混ぜる
+        /// </summary>
+        /// <param name="playingCards">カードの配列</param>
+        private void ShuffleCard(Card[] playingCards)
+        {
+            Random r = new Random();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            gameSec++;
+            labelSec.Text = gameSec + "秒経過"; 
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Pelmanism
             //初期化
             NowOpenCardIndex1 = NowOpenCardIndex2 = -1;
             BeforeOpenCardIndex1 = BeforeOpenCardIndex2 = -1;
+            OpenCounter = 0;
         }
 
         //今回の1枚目の添え字
