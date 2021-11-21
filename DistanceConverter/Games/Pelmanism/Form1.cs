@@ -186,6 +186,37 @@ namespace Pelmanism
         private void ShuffleCard(Card[] playingCards)
         {
             Random r = new Random();
+            //int[] nums = new int[playingCards.Length];
+            var numhashset = new HashSet<int>();
+            for (var i = 0; i < 24; i++)
+            {
+                 var num = r.Next(0, 23);
+                if (numhashset.Add(num) != true)
+                {
+                    i--;
+                }
+                if (i >= 21)
+                {
+                    for(var j = 0; j < 24 ; j++)
+                    {
+                        if (numhashset.Contains(j)!=true)
+                        {
+                            numhashset.Add(j);
+                            i++;
+                        }
+                    }
+                }
+            }
+            int[] nums = numhashset.ToArray();
+            string[] temp = new string[24];
+            for(var i = 0; i < 24; i++)
+            {
+                temp[i] = playingCards[i].Picture;
+            }
+            for(var i = 0; i < 24; i++)
+            {
+                playingCards[nums[i]].Picture = temp[i];
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -195,3 +226,4 @@ namespace Pelmanism
         }
     }
 }
+
