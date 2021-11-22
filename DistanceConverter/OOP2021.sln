@@ -143,6 +143,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Games", "Games", "{2A0904AE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pelmanism", "Games\Pelmanism\Pelmanism.csproj", "{4B4D6A40-8608-4E2E-BBA8-8C5EE21E766A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsWar", "Games\戦争ゲーム\CardsWar\CardsWar.csproj", "{3E9646CA-9323-473A-B279-61AFF61BF0E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -325,6 +327,10 @@ Global
 		{4B4D6A40-8608-4E2E-BBA8-8C5EE21E766A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B4D6A40-8608-4E2E-BBA8-8C5EE21E766A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B4D6A40-8608-4E2E-BBA8-8C5EE21E766A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9646CA-9323-473A-B279-61AFF61BF0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9646CA-9323-473A-B279-61AFF61BF0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9646CA-9323-473A-B279-61AFF61BF0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9646CA-9323-473A-B279-61AFF61BF0E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -378,6 +384,7 @@ Global
 		{E3420783-51F1-47F8-BE16-1A8BFCBA9120} = {4EC1ABB8-B7C7-4B7E-9E81-AB09435B1A37}
 		{6C64D991-98A7-4D85-8AB4-1A1C518960CB} = {4EC1ABB8-B7C7-4B7E-9E81-AB09435B1A37}
 		{4B4D6A40-8608-4E2E-BBA8-8C5EE21E766A} = {2A0904AE-44AF-4C34-A9C4-D9F91311F427}
+		{3E9646CA-9323-473A-B279-61AFF61BF0E4} = {2A0904AE-44AF-4C34-A9C4-D9F91311F427}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93E0FB3F-678A-4F03-8459-E080E5ECF736}

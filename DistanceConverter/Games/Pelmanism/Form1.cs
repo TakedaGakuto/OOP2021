@@ -16,6 +16,7 @@ namespace Pelmanism
         private Card[] playingCards;
         private Player player;
         private int gameSec;
+        int TimeLimit = 30;
 
         public FormGame()
         {
@@ -68,7 +69,6 @@ namespace Pelmanism
             Controls.AddRange(playingCards);
             ResumeLayout(false);
             labelGuidance.Text = "スタートボタンをクリックしてゲームを開始してください。";
-
         }
 
         private void CardButtons_Click(object sender, EventArgs e)
@@ -173,7 +173,7 @@ namespace Pelmanism
             }
             //スタートボタンマスク
             buttonStart.Enabled = false;
-            gameSec = 0;
+            gameSec = TimeLimit;
             timer1.Start();
 
             labelGuidance.Text = "クリックしてカードをめくってください。";
@@ -186,7 +186,6 @@ namespace Pelmanism
         private void ShuffleCard(Card[] playingCards)
         {
             Random r = new Random();
-            //int[] nums = new int[playingCards.Length];
             var numhashset = new HashSet<int>();
             for (var i = 0; i < 24; i++)
             {
@@ -219,10 +218,22 @@ namespace Pelmanism
             }
         }
 
+        
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            gameSec++;
+            gameSec--;
             labelSec.Text = gameSec + "秒経過"; 
+            if(gameSec == 0)
+            {
+                timer1.Stop();
+                labelGuidance.Text = "タイムオーバーです。";
+                foreach(var card in playingCards)
+                {
+                    card.Close();
+                }
+                buttonStart.Enabled = true;
+            }
         }
     }
 }
